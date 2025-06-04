@@ -321,3 +321,20 @@ CELERY_RESULT_BACKEND = "redis://" + REDIS_HOST + ":" + REDIS_PORT + "/0"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
+
+
+PROJECT_LOGGING_DIR = os.path.join(BASE_DIR.parent, "logs")
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {"simple": {"format": "{process}-{thread} {levelname} {asctime} {message}", "style": "{"}},
+    "handlers": {
+        "email.file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(PROJECT_LOGGING_DIR, "email.log"),
+            "formatter": "simple",
+        },
+    },
+    "loggers": {"stroy.email": {"handlers": ["email.file"], "level": "INFO", "propogate": False}},
+}
