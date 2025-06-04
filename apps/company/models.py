@@ -41,11 +41,17 @@ class AdditionalPhone(models.Model):
     value = PhoneField("номер телефона")
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT, related_name="phones")
 
+    def __str__(self):
+        return f"{self.caption} - {self.value}"
+
 
 class AdditionalEmail(models.Model):
     caption = models.CharField("подпись email", max_length=64)
     value = models.EmailField("email")
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT, related_name="emails")
+
+    def __str__(self):
+        return f"{self.caption} - {self.value}"
 
 
 # requisites

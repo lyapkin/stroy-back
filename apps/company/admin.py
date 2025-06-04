@@ -13,6 +13,8 @@ class AdditionalBaseInline(admin.TabularInline):
 
 class AdditionalPhoneInline(AdditionalBaseInline):
     model = AdditionalPhone
+    verbose_name = "дополнительный номер"
+    verbose_name_plural = "дополнительные номера"
 
     def get_formset(self, request, obj=..., **kwargs):
         fs = super().get_formset(request, obj, **kwargs)
@@ -22,6 +24,9 @@ class AdditionalPhoneInline(AdditionalBaseInline):
 
 class AdditionalEmailInline(AdditionalBaseInline):
     model = AdditionalEmail
+
+    verbose_name = "дополнительный email"
+    verbose_name_plural = "дополнительные email"
 
 
 @admin.register(Address)
