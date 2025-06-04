@@ -1,12 +1,12 @@
-import logging
 from smtplib import SMTPException
 from django.core.mail import send_mail
 from django.conf import settings
+from celery.utils.log import get_task_logger
 
 from core.celery import app
 
 
-logger = logging.getLogger("stroy.email")
+logger = get_task_logger("stroy.email")
 
 
 @app.task(bind=True)
