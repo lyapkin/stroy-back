@@ -17,7 +17,7 @@ def email_notification_on_call_request(sender, instance=None, created=False, **k
             f"Запрос консультации с сайта.\n\n"
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
         )
-
+        logger.info(f"Sending email message formed; {subject} {message}")
         run_send_email.delay(subject, message)
 
 
@@ -29,7 +29,7 @@ def email_notification_on_order_request(sender, instance=None, created=False, **
             f"Запрос из корзины сайта.\n\n"
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
         )
-
+        logger.info(f"Sending email message formed; {subject} {message}")
         run_send_email.delay(subject, message)
 
 
@@ -41,5 +41,5 @@ def email_notification_on_commercial_request(sender, instance=None, created=Fals
             f"Запрос коммерческого предложения сайта.\n\n"
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
         )
-
+        logger.info(f"Sending email message formed; {subject} {message}")
         run_send_email.delay(subject, message)
