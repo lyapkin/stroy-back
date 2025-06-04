@@ -12,8 +12,22 @@ class RequestsConfig(AppConfig):
         from .models import ConsultationRequest, OrderRequest, CommercialRequest
 
         post_save.connect(
-            request_notification.email_notification_on_request,
+            request_notification.email_notification_on_call_request,
             sender=ConsultationRequest,
+            weak=False,
+            dispatch_uid="ConsultationRequestFromClient",
+        )
+
+        post_save.connect(
+            request_notification.email_notification_on_order_request,
+            sender=OrderRequest,
+            weak=False,
+            dispatch_uid="ConsultationRequestFromClient",
+        )
+
+        post_save.connect(
+            request_notification.email_notification_on_commercial_request,
+            sender=CommercialRequest,
             weak=False,
             dispatch_uid="ConsultationRequestFromClient",
         )
