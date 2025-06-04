@@ -11,6 +11,7 @@ logger = logging.getLogger("stroy.email")
 
 @app.task(bind=True)
 def run_send_email(self, subject, message):
+    logger.info(f"Sending email in celery;")
     try:
         if settings.EMAIL_HOST_USER:
             logger.info(f"Sending email celery;")
