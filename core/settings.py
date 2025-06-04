@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     "django_filters",
     "corsheaders",
     "django_ckeditor_5",
-    "smart_selects",
     "nested_admin",
 ]
 
