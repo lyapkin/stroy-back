@@ -1,0 +1,57 @@
+[
+{
+  "model": "company.contact",
+  "pk": 1,
+  "fields": {
+    "email": "info@stroy-technology.ru",
+    "phone": "+79153664051"
+  }
+},
+{
+  "model": "company.address",
+  "pk": 1,
+  "fields": {
+    "city": "Москва",
+    "address": "Ул. Парковая 25 этаж 7 офис 24",
+    "caption": "Склад и сервис",
+    "weekdays": "с 08:00 до 20:00",
+    "weekends": "с 12:00 до 16:00",
+    "phone": "+79677828704",
+    "contact": 1
+  }
+},
+{
+  "model": "company.additionalphone",
+  "pk": 1,
+  "fields": {
+    "caption": "Отдел продаж",
+    "value": "+75675675675",
+    "contact": 1
+  }
+},
+{
+  "model": "company.additionalemail",
+  "pk": 1,
+  "fields": {
+    "caption": "Сотрудничество",
+    "value": "stroy-coop@mail.ru",
+    "contact": 1
+  }
+},
+{
+  "model": "company.requisite",
+  "pk": 1,
+  "fields": {
+    "name": "ООО Строительные технологии"
+  }
+},
+{
+  "model": "company.requisiteitem",
+  "pk": 1,
+  "fields": {
+    "name": "Юридический адрес",
+    "value": "Москва, Ул. Парковая 25 этаж 7 офис 24",
+    "organization": 1
+  }
+}
+]

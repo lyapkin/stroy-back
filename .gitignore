@@ -1,0 +1,10 @@
+venv/
+.env
+__pycache__/
+/static/
+db.sqlite3
+media/
+_dump/
+.prettierignore
+logs/
+.vscode

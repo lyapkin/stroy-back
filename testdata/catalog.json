@@ -1,0 +1,1313 @@
+[
+{
+  "model": "catalog.productcategorygroup",
+  "pk": 1,
+  "fields": {
+    "order": 32000,
+    "name": "Опалубка лифтовых шахт",
+    "slug": "opalubka-liftovyh-shaht",
+    "image": "images/catalog/category_group/opalubka/1-1748165067197.jpg"
+  }
+},
+{
+  "model": "catalog.productcategorygroup",
+  "pk": 2,
+  "fields": {
+    "order": 32000,
+    "name": "Комплектующие к опалубке",
+    "slug": "komplektuyushie-k-opalubke",
+    "image": "images/catalog/category_group/komplektuyushie-k-opalubke/2-1748242250574.jpg"
+  }
+},
+{
+  "model": "catalog.productcategorygroup",
+  "pk": 3,
+  "fields": {
+    "order": 32000,
+    "name": "Хомуты",
+    "slug": "homuty",
+    "image": "images/catalog/category_group/homuty/3-1748242260866.jpg"
+  }
+},
+{
+  "model": "catalog.productcategorygroup",
+  "pk": 4,
+  "fields": {
+    "order": 32000,
+    "name": "Опалубка перекрытий",
+    "slug": "opalubka-perekrytij",
+    "image": "images/catalog/category_group/opalubka-perekrytij/4-1748242275097.jpg"
+  }
+},
+{
+  "model": "catalog.productcategorygroup",
+  "pk": 5,
+  "fields": {
+    "order": 32000,
+    "name": "Опалубка стеновая",
+    "slug": "opalubka-stenovaya",
+    "image": "images/catalog/category_group/opalubka-stenovaya/5-1748242288650.jpg"
+  }
+},
+{
+  "model": "catalog.productcategorygroup",
+  "pk": 6,
+  "fields": {
+    "order": 32000,
+    "name": "Винт стяжной",
+    "slug": "vint-styazhnoj",
+    "image": "images/catalog/category_group/vint-styazhnoj/6-1748242300059.jpg"
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 1,
+  "fields": {
+    "order": 32000,
+    "name": "Хомут поворотный",
+    "slug": "homuty-povorot",
+    "group": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 2,
+  "fields": {
+    "order": 32000,
+    "name": "Винт стяжной",
+    "slug": "vint-ctayzhnoy",
+    "group": [
+      6
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 3,
+  "fields": {
+    "order": 32000,
+    "name": "Винтовая пара",
+    "slug": "vintovaya-para",
+    "group": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 4,
+  "fields": {
+    "order": 32000,
+    "name": "Замок клиновой",
+    "slug": "zamok-klinovoj",
+    "group": [
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 5,
+  "fields": {
+    "order": 32000,
+    "name": "Хомут неповоротный",
+    "slug": "homut-nepovorotnyj",
+    "group": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 6,
+  "fields": {
+    "order": 32000,
+    "name": "Хомут стыковочный",
+    "slug": "homut-stykovochnyj",
+    "group": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 7,
+  "fields": {
+    "order": 32000,
+    "name": "Хомут к балке",
+    "slug": "homut-k-balke",
+    "group": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 8,
+  "fields": {
+    "order": 32000,
+    "name": "Гайка шестигранная для стяжного винта",
+    "slug": "gajka-shestigrannaya-dlya-styazhnogo-vinta",
+    "group": [
+      6
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 9,
+  "fields": {
+    "order": 32000,
+    "name": "Замок реечный выравнивающий",
+    "slug": "zamok-reechnyj-vyravnivayushij",
+    "group": [
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 10,
+  "fields": {
+    "order": 32000,
+    "name": "Анкер торцевой",
+    "slug": "anker-torcevoj",
+    "group": [
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 11,
+  "fields": {
+    "order": 32000,
+    "name": "Гайка трехрожковая",
+    "slug": "gajka-trehrozhkovaya",
+    "group": [
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 12,
+  "fields": {
+    "order": 32000,
+    "name": "Стойка телескопическая",
+    "slug": "stojka-teleskopicheskaya",
+    "group": [
+      4
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 13,
+  "fields": {
+    "order": 32000,
+    "name": "Тренога",
+    "slug": "trenoga",
+    "group": [
+      4
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 14,
+  "fields": {
+    "order": 32000,
+    "name": "Унивилка",
+    "slug": "univilka",
+    "group": [
+      4
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 15,
+  "fields": {
+    "order": 32000,
+    "name": "Щит опалубки",
+    "slug": "shit-opalubki",
+    "group": [
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 16,
+  "fields": {
+    "order": 32000,
+    "name": "Подкос",
+    "slug": "podkos",
+    "group": [
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 17,
+  "fields": {
+    "order": 32000,
+    "name": "Балка выравнивающая",
+    "slug": "balka-vyravnivayushaya",
+    "group": [
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.productcategory",
+  "pk": 18,
+  "fields": {
+    "order": 32000,
+    "name": "Щит угловой распалубочный",
+    "slug": "shit-uglovoj-raspalubochnyj",
+    "group": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 2,
+  "fields": {
+    "order": 32000,
+    "name": "Длина",
+    "category": 2
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 4,
+  "fields": {
+    "order": 32000,
+    "name": "Размер",
+    "category": 1
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 5,
+  "fields": {
+    "order": 32000,
+    "name": "Материал",
+    "category": 4
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 6,
+  "fields": {
+    "order": 32000,
+    "name": "Размер",
+    "category": 5
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 7,
+  "fields": {
+    "order": 32000,
+    "name": "Материал",
+    "category": 11
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 8,
+  "fields": {
+    "order": 32000,
+    "name": "Размер",
+    "category": 11
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 9,
+  "fields": {
+    "order": 32000,
+    "name": "Уровни",
+    "category": 16
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 10,
+  "fields": {
+    "order": 32000,
+    "name": "Размер",
+    "category": 16
+  }
+},
+{
+  "model": "catalog.attribute",
+  "pk": 11,
+  "fields": {
+    "order": 32000,
+    "name": "Размер",
+    "category": 18
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 1,
+  "fields": {
+    "order": 32000,
+    "name": "товар",
+    "slug": "tovar",
+    "category": 1,
+    "price": 300,
+    "discount": null,
+    "remainder": 4,
+    "stock": false,
+    "description": "<p>Lorem Ipsum&nbsp;- это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p><ul><li>пункт</li><li>пункт</li></ul><p>Lorem Ipsum&nbsp;- это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 2,
+  "fields": {
+    "order": 32000,
+    "name": "Щит угловой распвлубочный 1,5 м",
+    "slug": "shit-uglovoj-raspvlubochnyj-15-m",
+    "category": 18,
+    "price": 400,
+    "discount": 30,
+    "remainder": 23423,
+    "stock": false,
+    "description": "<p>Щит угловой распвлубочный 1,5 м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 3,
+  "fields": {
+    "order": 32000,
+    "name": "Щит угловой распалубочный 3,0 м",
+    "slug": "shit-uglovoj-raspalubochnyj-30-m",
+    "category": 18,
+    "price": 534534,
+    "discount": 24,
+    "remainder": 234,
+    "stock": false,
+    "description": "<p>Щит угловой распвлубочный 3,0 м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 4,
+  "fields": {
+    "order": 32000,
+    "name": "Щит угловой распвлубочный 3,3 м",
+    "slug": "shit-uglovoj-raspvlubochnyj-33-m",
+    "category": 18,
+    "price": 53454,
+    "discount": 3,
+    "remainder": 32423,
+    "stock": false,
+    "description": "<p>Щит угловой распвлубочный 3,3 м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 5,
+  "fields": {
+    "order": 32000,
+    "name": "Винтовая пара",
+    "slug": "vintovaya-para",
+    "category": 3,
+    "price": 432,
+    "discount": 3,
+    "remainder": 4234,
+    "stock": false,
+    "description": "<p>Винтовая пара</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 6,
+  "fields": {
+    "order": 32000,
+    "name": "Подкос одноуровневый",
+    "slug": "podkos-odnourovnevyj",
+    "category": 16,
+    "price": 5345,
+    "discount": null,
+    "remainder": 34534,
+    "stock": false,
+    "description": "<p>Подкос</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 7,
+  "fields": {
+    "order": 32000,
+    "name": "Подкос двухуровневый 3 м",
+    "slug": "podkos-dvuhurovnevyj-3-m",
+    "category": 16,
+    "price": 6546,
+    "discount": null,
+    "remainder": 534,
+    "stock": false,
+    "description": "<p>Подкос двухуровневый 3 м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 8,
+  "fields": {
+    "order": 32000,
+    "name": "Замок клиновый оцинкованный",
+    "slug": "zamok-klinovyj-ocinkovannyj",
+    "category": 4,
+    "price": 564,
+    "discount": null,
+    "remainder": 435,
+    "stock": false,
+    "description": "<p>Замок клиновый оцинкованный</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 9,
+  "fields": {
+    "order": 32000,
+    "name": "Замок клиновый черный",
+    "slug": "zamok-klinovyj-chernyj",
+    "category": 4,
+    "price": 435,
+    "discount": null,
+    "remainder": 54343,
+    "stock": false,
+    "description": "<p>Замок клиновый черный</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 10,
+  "fields": {
+    "order": 32000,
+    "name": "Гайка оцинкованная трехрожковая 90мм",
+    "slug": "gajka-ocinkovannaya-trehrozhkovaya-90mm",
+    "category": 11,
+    "price": 534,
+    "discount": null,
+    "remainder": 43234,
+    "stock": false,
+    "description": "<p>Гайка оцинкованная трехрожковая 90мм</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 11,
+  "fields": {
+    "order": 32000,
+    "name": "Гайка оцинкованная трехрожковая 100мм",
+    "slug": "gajka-ocinkovannaya-trehrozhkovaya-100mm",
+    "category": 11,
+    "price": 5433,
+    "discount": null,
+    "remainder": 234,
+    "stock": false,
+    "description": "<p>Гайка оцинкованная трехрожковая 100мм</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 12,
+  "fields": {
+    "order": 32000,
+    "name": "Гайка черная трехрожковая 90мм",
+    "slug": "gajka-chernaya-trehrozhkovaya-90mm",
+    "category": 11,
+    "price": 600,
+    "discount": 40,
+    "remainder": 234,
+    "stock": false,
+    "description": "<p>Гайка черная трехрожковая 90мм</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 13,
+  "fields": {
+    "order": 32000,
+    "name": "Винта стяжной 0,8м",
+    "slug": "vinta-styazhnoj-08m",
+    "category": 2,
+    "price": 234,
+    "discount": null,
+    "remainder": 423423,
+    "stock": false,
+    "description": "<p>Винта стяжной 0,8м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 14,
+  "fields": {
+    "order": 32000,
+    "name": "Винта стяжной 1,0м",
+    "slug": "vinta-styazhnoj-10m",
+    "category": 2,
+    "price": 543,
+    "discount": null,
+    "remainder": 534,
+    "stock": false,
+    "description": "<p>Винта стяжной 1,0м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 15,
+  "fields": {
+    "order": 32000,
+    "name": "Винта стяжной 1,2м",
+    "slug": "vinta-styazhnoj-12m",
+    "category": 2,
+    "price": 2423,
+    "discount": null,
+    "remainder": 6534,
+    "stock": false,
+    "description": "<p>Винта стяжной 1,2м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 16,
+  "fields": {
+    "order": 32000,
+    "name": "Винта стяжной 2,0м",
+    "slug": "vinta-styazhnoj-20m",
+    "category": 2,
+    "price": 53453,
+    "discount": null,
+    "remainder": 53453,
+    "stock": false,
+    "description": "<p>Винта стяжной 2,0м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 17,
+  "fields": {
+    "order": 32000,
+    "name": "Винта стяжной 3,0м",
+    "slug": "vinta-styazhnoj-30m",
+    "category": 2,
+    "price": 5435,
+    "discount": null,
+    "remainder": 5345,
+    "stock": false,
+    "description": "<p>Винта стяжной 3,0м</p>"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 18,
+  "fields": {
+    "order": 32000,
+    "name": "Винта стяжной 6,0м",
+    "slug": "vinta-styazhnoj-60m",
+    "category": 2,
+    "price": 54645,
+    "discount": null,
+    "remainder": 435,
+    "stock": false,
+    "description": "<p>Винта стяжной 6,0м</p>"
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 3,
+  "fields": {
+    "name": "0.8 м",
+    "attribute": 2
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 4,
+  "fields": {
+    "name": "1.0 м",
+    "attribute": 2
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 7,
+  "fields": {
+    "name": "48*48",
+    "attribute": 4
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 8,
+  "fields": {
+    "name": "Цник",
+    "attribute": 5
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 9,
+  "fields": {
+    "name": "Сталь",
+    "attribute": 5
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 10,
+  "fields": {
+    "name": "48*48",
+    "attribute": 6
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 11,
+  "fields": {
+    "name": "1.2 м",
+    "attribute": 2
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 12,
+  "fields": {
+    "name": "2.0 м",
+    "attribute": 2
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 13,
+  "fields": {
+    "name": "3.0 м",
+    "attribute": 2
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 14,
+  "fields": {
+    "name": "6.0 м",
+    "attribute": 2
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 15,
+  "fields": {
+    "name": "Цинк",
+    "attribute": 7
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 16,
+  "fields": {
+    "name": "Сталь",
+    "attribute": 7
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 17,
+  "fields": {
+    "name": "90 мм",
+    "attribute": 8
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 18,
+  "fields": {
+    "name": "100 мм",
+    "attribute": 8
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 19,
+  "fields": {
+    "name": "Одноуровневый",
+    "attribute": 9
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 20,
+  "fields": {
+    "name": "Двухуровневый",
+    "attribute": 9
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 21,
+  "fields": {
+    "name": "3 м",
+    "attribute": 10
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 22,
+  "fields": {
+    "name": "1.5 м",
+    "attribute": 11
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 23,
+  "fields": {
+    "name": "3.0 м",
+    "attribute": 11
+  }
+},
+{
+  "model": "catalog.attributevalue",
+  "pk": 24,
+  "fields": {
+    "name": "3.3 м",
+    "attribute": 11
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 1,
+  "fields": {
+    "url": "images/catalog/product/tovar/1-1748202378340.jpg",
+    "product": 1,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 2,
+  "fields": {
+    "url": "images/catalog/product/tovar/2-1748202378342.jpg",
+    "product": 1,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 3,
+  "fields": {
+    "url": "images/catalog/product/shit-uglovoj-raspvlubochnyj-15-m/1-1748243680423.jpg",
+    "product": 2,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 4,
+  "fields": {
+    "url": "images/catalog/product/shit-uglovoj-raspvlubochnyj-15-m/2-1748243680425.jpg",
+    "product": 2,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 5,
+  "fields": {
+    "url": "images/catalog/product/shit-uglovoj-raspalubochnyj-30-m/1-1748243727530.jpg",
+    "product": 3,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 6,
+  "fields": {
+    "url": "images/catalog/product/shit-uglovoj-raspalubochnyj-30-m/2-1748243727530.jpg",
+    "product": 3,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 7,
+  "fields": {
+    "url": "images/catalog/product/shit-uglovoj-raspvlubochnyj-33-m/1-1748243768039.jpg",
+    "product": 4,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 8,
+  "fields": {
+    "url": "images/catalog/product/shit-uglovoj-raspvlubochnyj-33-m/2-1748243768040.jpg",
+    "product": 4,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 9,
+  "fields": {
+    "url": "images/catalog/product/vintovaya-para/1-1748243800501.jpg",
+    "product": 5,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 10,
+  "fields": {
+    "url": "images/catalog/product/vintovaya-para/2-1748243800503.jpg",
+    "product": 5,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 11,
+  "fields": {
+    "url": "images/catalog/product/podkos-odnourovnevyj/1-1748243850964.jpg",
+    "product": 6,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 12,
+  "fields": {
+    "url": "images/catalog/product/podkos-odnourovnevyj/2-1748243850965.jpg",
+    "product": 6,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 13,
+  "fields": {
+    "url": "images/catalog/product/podkos-dvuhurovnevyj-3-m/1-1748243895873.jpg",
+    "product": 7,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 14,
+  "fields": {
+    "url": "images/catalog/product/podkos-dvuhurovnevyj-3-m/2-1748243895874.jpg",
+    "product": 7,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 15,
+  "fields": {
+    "url": "images/catalog/product/zamok-klinovyj-ocinkovannyj/1-1748243939215.jpg",
+    "product": 8,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 16,
+  "fields": {
+    "url": "images/catalog/product/zamok-klinovyj-ocinkovannyj/2-1748243939217.jpg",
+    "product": 8,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 17,
+  "fields": {
+    "url": "images/catalog/product/zamok-klinovyj-chernyj/1-1748243977542.jpg",
+    "product": 9,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 18,
+  "fields": {
+    "url": "images/catalog/product/zamok-klinovyj-chernyj/2-1748243977544.jpg",
+    "product": 9,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 19,
+  "fields": {
+    "url": "images/catalog/product/gajka-ocinkovannaya-trehrozhkovaya-90mm/1-1748244034625.jpg",
+    "product": 10,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 20,
+  "fields": {
+    "url": "images/catalog/product/gajka-ocinkovannaya-trehrozhkovaya-90mm/2-1748244034625.jpg",
+    "product": 10,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 21,
+  "fields": {
+    "url": "images/catalog/product/gajka-ocinkovannaya-trehrozhkovaya-100mm/1-1748244070723.jpg",
+    "product": 11,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 22,
+  "fields": {
+    "url": "images/catalog/product/gajka-ocinkovannaya-trehrozhkovaya-100mm/2-1748244070724.jpg",
+    "product": 11,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 23,
+  "fields": {
+    "url": "images/catalog/product/gajka-chernaya-trehrozhkovaya-90mm/1-1748244126662.jpg",
+    "product": 12,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 24,
+  "fields": {
+    "url": "images/catalog/product/gajka-chernaya-trehrozhkovaya-90mm/2-1748244126664.jpg",
+    "product": 12,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 25,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-08m/1-1748244179276.jpg",
+    "product": 13,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 26,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-08m/2-1748244179277.jpg",
+    "product": 13,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 27,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-10m/1-1748244225642.jpg",
+    "product": 14,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 28,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-10m/2-1748244225643.jpg",
+    "product": 14,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 29,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-12m/1-1748244259596.jpg",
+    "product": 15,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 30,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-12m/2-1748244259598.jpg",
+    "product": 15,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 31,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-20m/1-1748244294354.jpg",
+    "product": 16,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 32,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-20m/2-1748244294355.jpg",
+    "product": 16,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 33,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-30m/1-1748244329686.jpg",
+    "product": 17,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 34,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-30m/2-1748244329688.jpg",
+    "product": 17,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 35,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-60m/1-1748244359645.jpg",
+    "product": 18,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productimg",
+  "pk": 36,
+  "fields": {
+    "url": "images/catalog/product/vinta-styazhnoj-60m/2-1748244359647.jpg",
+    "product": 18,
+    "order": 10
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 3,
+  "fields": {
+    "order": 32000,
+    "product": 2,
+    "attribute": 11,
+    "value": 22
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 4,
+  "fields": {
+    "order": 32000,
+    "product": 3,
+    "attribute": 11,
+    "value": 23
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 5,
+  "fields": {
+    "order": 32000,
+    "product": 4,
+    "attribute": 11,
+    "value": 24
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 6,
+  "fields": {
+    "order": 32000,
+    "product": 6,
+    "attribute": 9,
+    "value": 19
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 7,
+  "fields": {
+    "order": 32000,
+    "product": 7,
+    "attribute": 9,
+    "value": 20
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 8,
+  "fields": {
+    "order": 32000,
+    "product": 7,
+    "attribute": 10,
+    "value": 21
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 9,
+  "fields": {
+    "order": 32000,
+    "product": 8,
+    "attribute": 5,
+    "value": 8
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 10,
+  "fields": {
+    "order": 32000,
+    "product": 9,
+    "attribute": 5,
+    "value": 9
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 11,
+  "fields": {
+    "order": 32000,
+    "product": 10,
+    "attribute": 7,
+    "value": 15
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 12,
+  "fields": {
+    "order": 32000,
+    "product": 10,
+    "attribute": 8,
+    "value": 17
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 13,
+  "fields": {
+    "order": 32000,
+    "product": 11,
+    "attribute": 7,
+    "value": 15
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 14,
+  "fields": {
+    "order": 32000,
+    "product": 11,
+    "attribute": 8,
+    "value": 18
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 15,
+  "fields": {
+    "order": 32000,
+    "product": 12,
+    "attribute": 7,
+    "value": 16
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 16,
+  "fields": {
+    "order": 32000,
+    "product": 12,
+    "attribute": 8,
+    "value": 17
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 17,
+  "fields": {
+    "order": 32000,
+    "product": 13,
+    "attribute": 2,
+    "value": 3
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 18,
+  "fields": {
+    "order": 32000,
+    "product": 14,
+    "attribute": 2,
+    "value": 4
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 19,
+  "fields": {
+    "order": 32000,
+    "product": 15,
+    "attribute": 2,
+    "value": 11
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 20,
+  "fields": {
+    "order": 32000,
+    "product": 16,
+    "attribute": 2,
+    "value": 12
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 21,
+  "fields": {
+    "order": 32000,
+    "product": 17,
+    "attribute": 2,
+    "value": 13
+  }
+},
+{
+  "model": "catalog.productattribute",
+  "pk": 22,
+  "fields": {
+    "order": 32000,
+    "product": 18,
+    "attribute": 2,
+    "value": 14
+  }
+}
+]

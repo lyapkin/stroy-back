@@ -1,0 +1,86 @@
+from django.contrib import admin
+from django import forms
+from .models import Contact, Requisite, RequisiteItem, AdditionalPhone, AdditionalEmail, Address
+
+
+# Register your models here.
+class AdditionalBaseInline(admin.TabularInline):
+    fields = (
+        "caption",
+        "value",
+    )
+
+
+class AdditionalPhoneInline(AdditionalBaseInline):
+    model = AdditionalPhone
+
+    def get_formset(self, request, obj=..., **kwargs):
+        fs = super().get_formset(request, obj, **kwargs)
+        fs.form.base_fields["value"].widget = forms.TelInput()
+        return fs
+
+
+class AdditionalEmailInline(AdditionalBaseInline):
+    model = AdditionalEmail
+
+
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    fields = (
+        "caption",
+        "city",
+        "address",
+        "weekdays",
+        "weekends",
+        "phone",
+    )
+
+    def get_form(self, request, obj=..., change=..., **kwargs):
+        form = super().get_form(request, obj, change, **kwargs)
+        form.base_fields["phone"].widget = forms.TelInput()
+        return form
+
+    class Media:
+        js = ("js/admin/format_phone.js",)
+
+
+@admin.register(Contact)
+class ContactsAdmin(admin.ModelAdmin):
+    fields = [
+        "email",
+        "phone",
+    ]
+    inlines = (AdditionalPhoneInline, AdditionalEmailInline)
+
+    def get_form(self, request, obj=..., change=..., **kwargs):
+        form = super().get_form(request, obj, change, **kwargs)
+        form.base_fields["phone"].widget = forms.TelInput()
+        return form
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=...):
+        return False
+
+    class Media:
+        js = ("js/admin/format_phone.js",)
+
+
+class RequisiteItemInline(admin.TabularInline):
+    model = RequisiteItem
+    fields = (
+        "name",
+        "value",
+    )
+
+
+@admin.register(Requisite)
+class RequisiteAdmin(admin.ModelAdmin):
+    inlines = (RequisiteItemInline,)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=...):
+        return False
