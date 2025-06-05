@@ -36,6 +36,23 @@ class ProductCategoryGroupSerializer(serializers.ModelSerializer):
         )
 
 
+class ProductCategoryGroupItemSerializer(serializers.ModelSerializer):
+
+    class Meta(ProductCategorySerializer.Meta):
+        fields = (
+            "id",
+            "name",
+            "slug",
+        )
+
+
+class ProductCategoryItemSerializer(ProductCategorySerializer):
+    parents = ProductCategoryGroupItemSerializer(many=True, source="group")
+
+    class Meta(ProductCategorySerializer.Meta):
+        fields = ProductCategorySerializer.Meta.fields + ("parents",)
+
+
 # product
 class ProductImgSerializer(serializers.ModelSerializer):
 

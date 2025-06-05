@@ -1,12 +1,20 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from .views import category_attributes, attribute_values, ProductCategoryGroupApi, ProductApi, CartApi, AttributeApi
+from .views import (
+    category_attributes,
+    attribute_values,
+    ProductCategoryGroupApi,
+    ProductCategoryApi,
+    ProductApi,
+    CartApi,
+    AttributeApi,
+)
 
 
 category_router = routers.SimpleRouter(trailing_slash=True)
 category_router.register("groups", ProductCategoryGroupApi)
-# category_router.register("categories", ProductCategoryApi)
+category_router.register("categories", ProductCategoryApi)
 # category_router.register("attributes", AttributeApi)
 
 attributes_router = routers.SimpleRouter(trailing_slash=True)

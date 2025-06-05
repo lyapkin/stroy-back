@@ -8,6 +8,7 @@ from shared.utils import is_int
 from .models import ProductCategory, ProductCategoryGroup, Product, ProductAttribute, Attribute
 from .serializers import (
     ProductCategoryGroupSerializer,
+    ProductCategoryItemSerializer,
     ProductListSerializer,
     ProductDetailSerializer,
     ProductRemainderSerializer,
@@ -17,9 +18,16 @@ from .filters import ProductFilter, CartFilter, PriceOrderingFilter
 
 
 # Create your views here.
-class ProductCategoryGroupApi(viewsets.GenericViewSet, mixins.ListModelMixin):
+class ProductCategoryGroupApi(viewsets.ReadOnlyModelViewSet):
     queryset = ProductCategoryGroup.objects.prefetch_related("categories").all()
     serializer_class = ProductCategoryGroupSerializer
+    lookup_field = "slug"
+
+
+class ProductCategoryApi(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
+    queryset = ProductCategory.objects.prefetch_related("group").all()
+    serializer_class = ProductCategoryItemSerializer
+    lookup_field = "slug"
 
 
 # product
