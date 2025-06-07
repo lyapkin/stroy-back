@@ -25,6 +25,7 @@ class AdditioanlEmailSerializer(AdditionalBaseSerializer):
 
 
 class AddressSerializer(serializers.ModelSerializer):
+    coordinates = serializers.SerializerMethodField()
 
     class Meta:
         model = Address
@@ -36,7 +37,22 @@ class AddressSerializer(serializers.ModelSerializer):
             "weekdays",
             "weekends",
             "phone",
+            "coordinates",
         )
+
+    def get_coordinates(self, obj):
+        if obj.coordinates is None:
+            return None
+
+        arr = obj.coordinates.split(", ")
+        if len(arr) != 2:
+            return None
+        try:
+            result = list(map(lambda item: float(item), arr))
+            result.reverse()
+            return result
+        except:
+            return None
 
 
 class ContactSerializer(serializers.ModelSerializer):

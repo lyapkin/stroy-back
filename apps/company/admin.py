@@ -38,6 +38,7 @@ class AddressAdmin(admin.ModelAdmin):
         "weekdays",
         "weekends",
         "phone",
+        "coordinates",
     )
 
     def get_form(self, request, obj=..., change=..., **kwargs):

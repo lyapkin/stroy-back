@@ -28,6 +28,8 @@ class Address(models.Model):
 
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT, related_name="addresses", default=1)
 
+    coordinates = models.CharField("координаты", max_length=32, null=True)
+
     class Meta:
         verbose_name = "адрес"
         verbose_name_plural = "адреса"
