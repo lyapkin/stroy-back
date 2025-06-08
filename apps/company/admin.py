@@ -44,6 +44,7 @@ class AddressAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=..., change=..., **kwargs):
         form = super().get_form(request, obj, change, **kwargs)
         form.base_fields["phone"].widget = forms.TelInput()
+        form.base_fields["coordinates"].required = False
         return form
 
     class Media:
