@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
                 ("name", models.CharField(max_length=255, unique=True, verbose_name="страница")),
                 ("slug", models.SlugField(max_length=64, unique=True)),
-                ("title", models.CharField(max_length=64, verbose_name="заголовок страницы")),
+                ("title", models.CharField(max_length=72, verbose_name="заголовок страницы")),
             ],
             options={
                 "verbose_name": "страница",
