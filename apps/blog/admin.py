@@ -1,5 +1,6 @@
 from django.contrib import admin
 from shared.admin import SlugNotRequiredModelAdmin
+from apps.metadata.admin import PostMetadataInline
 from .models import Post, PostCategory, Faq, FaqCategory
 
 
@@ -15,7 +16,7 @@ class PostAdmin(SlugNotRequiredModelAdmin):
     list_display = ["name", "updated", "created"]
     filter_horizontal = ("categories",)
     prepopulated_fields = {"slug": ["name"]}
-    # inlines = (PostSEOInline,)
+    inlines = (PostMetadataInline,)
 
     def get_form(self, request, obj=..., change=..., **kwargs):
         form = super().get_form(request, obj, change, **kwargs)

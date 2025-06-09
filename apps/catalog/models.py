@@ -32,7 +32,9 @@ class ProductCategoryGroup(AbstractOrderModel):
 class ProductCategory(AbstractOrderModel):
     name = models.CharField("название", max_length=48, unique=True)
     slug = models.SlugField("url (slug)", max_length=64, unique=True)
-    group = models.ManyToManyField(ProductCategoryGroup, related_name="categories", verbose_name="группа категории")
+    group = models.ForeignKey(
+        ProductCategoryGroup, related_name="categories", on_delete=models.RESTRICT, verbose_name="группа категории"
+    )
 
     class Meta(AbstractOrderModel.Meta):
         verbose_name = "категория товара"

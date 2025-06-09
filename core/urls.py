@@ -20,20 +20,19 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-# from apps.seo.views import robots
+from apps.metadata.views import robots
 
 urlpatterns = [
-    # path("robots.txt", robots),
+    path("robots.txt", robots),
     path("admin/", admin.site.urls),
     path("ck_upload/", include("shared.urls"), name="custom_ck_upload"),
-    # path("smart_selects/", include("smart_selects.urls")),
     path("_nested_admin/", include("nested_admin.urls")),
     path("api/catalog/", include("apps.catalog.urls")),
     path("api/blog/", include("apps.blog.urls")),
     path("api/company/", include("apps.company.urls")),
     path("api/requests/", include("apps.requests.urls")),
-    # path("api/pages/", include("apps.pages.urls")),
-    # path("api/seo/", include("apps.seo.urls")),
+    path("api/pages/", include("apps.pages.urls")),
+    path("api/metadata/", include("apps.metadata.urls")),
     # path("api/policy/", include("apps.policy.urls")),
 ]
 

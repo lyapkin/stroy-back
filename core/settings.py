@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "apps.company",
     "apps.catalog",
     "apps.requests",
+    "apps.pages",
+    "apps.metadata",
     # third
     "rest_framework",
     "django_filters",

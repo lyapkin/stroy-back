@@ -25,7 +25,7 @@ class ProductCategoryGroupApi(viewsets.ReadOnlyModelViewSet):
 
 
 class ProductCategoryApi(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
-    queryset = ProductCategory.objects.prefetch_related("group").all()
+    queryset = ProductCategory.objects.select_related("group").all()
     serializer_class = ProductCategoryItemSerializer
     lookup_field = "slug"
 

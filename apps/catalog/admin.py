@@ -1,6 +1,7 @@
 from django.contrib import admin
-
 import nested_admin
+from apps.metadata.admin import ProductMetadataInline, CategoryGroupMetadataInline, CategoryMetadataInline
+from apps.metadata.mixins import MetaGenrationActionMixin
 from .models import (
     ProductCategoryGroup,
     ProductCategory,
@@ -15,7 +16,8 @@ from .models import (
 
 # Register your models here.
 @admin.register(ProductCategoryGroup)
-class ProductCatgeoryGroupAdmin(admin.ModelAdmin):
+class ProductCatgeoryGroupAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
+    actions = ("generate_metadata",)
     fields = (
         "name",
         "slug",
@@ -23,6 +25,7 @@ class ProductCatgeoryGroupAdmin(admin.ModelAdmin):
         "order",
     )
     prepopulated_fields = {"slug": ["name"]}
+    inlines = (CategoryGroupMetadataInline,)
 
     def get_form(self, request, obj=..., change=..., **kwargs):
         form = super().get_form(request, obj, change, **kwargs)
@@ -44,7 +47,8 @@ class AttributeInline(nested_admin.NestedTabularInline):
 
 
 @admin.register(ProductCategory)
-class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin):
+class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMixin):
+    actions = ("generate_metadata",)
     fields = (
         "name",
         "slug",
@@ -52,8 +56,11 @@ class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin):
         "order",
     )
     prepopulated_fields = {"slug": ["name"]}
-    filter_horizontal = ("group",)
-    inlines = (AttributeInline,)
+    # filter_horizontal = ("group",)
+    inlines = (
+        AttributeInline,
+        CategoryMetadataInline,
+    )
 
     def get_form(self, request, obj=..., change=..., **kwargs):
         form = super().get_form(request, obj, change, **kwargs)
@@ -109,8 +116,8 @@ class ProductAttributeInline(admin.TabularInline):
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    # actions = ("generate_metadata",)
+class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
+    actions = ("generate_metadata",)
     fields = [
         "name",
         "slug",
@@ -128,7 +135,7 @@ class ProductAdmin(admin.ModelAdmin):
         ProductAttributeInline,
         ImgInline,
         DocInline,
-        # ProductSEOInline,
+        ProductMetadataInline,
     )
 
     def get_readonly_fields(self, request, obj=...):

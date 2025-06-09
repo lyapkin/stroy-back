@@ -1,4 +1,9 @@
 from rest_framework import serializers
+from apps.metadata.serializers import (
+    ProductMetadataSerializer,
+    CategoryGroupMetadataSerializer,
+    CategoryMetadataSerializer,
+)
 from .models import (
     ProductCategory,
     ProductCategoryGroup,
@@ -24,6 +29,7 @@ class ProductCategorySerializer(serializers.ModelSerializer):
 
 class ProductCategoryGroupSerializer(serializers.ModelSerializer):
     categories = ProductCategorySerializer(many=True)
+    metadata = CategoryGroupMetadataSerializer()
 
     class Meta:
         model = ProductCategoryGroup
@@ -33,6 +39,7 @@ class ProductCategoryGroupSerializer(serializers.ModelSerializer):
             "slug",
             "image",
             "categories",
+            "metadata",
         )
 
 
@@ -47,10 +54,14 @@ class ProductCategoryGroupItemSerializer(serializers.ModelSerializer):
 
 
 class ProductCategoryItemSerializer(ProductCategorySerializer):
-    parents = ProductCategoryGroupItemSerializer(many=True, source="group")
+    parent = ProductCategoryGroupItemSerializer(source="group")
+    metadata = CategoryMetadataSerializer()
 
     class Meta(ProductCategorySerializer.Meta):
-        fields = ProductCategorySerializer.Meta.fields + ("parents",)
+        fields = ProductCategorySerializer.Meta.fields + (
+            "parent",
+            "metadata",
+        )
 
 
 # product
@@ -118,7 +129,7 @@ class ProductListSerializer(ProductBaseSerialzier):
 class ProductDetailSerializer(ProductBaseSerialzier):
     images = ProductImgSerializer(many=True)
     docs = ProductDocSerializer(many=True)
-    # seo = ProductSEOSerializer()
+    metadata = ProductMetadataSerializer()
 
     class Meta(ProductBaseSerialzier.Meta):
         fields = ProductBaseSerialzier.Meta.fields + (
@@ -126,7 +137,7 @@ class ProductDetailSerializer(ProductBaseSerialzier):
             "remainder",
             "images",
             "docs",
-            # "seo",
+            "metadata",
         )
 
 
