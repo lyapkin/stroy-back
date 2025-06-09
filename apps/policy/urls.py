@@ -1,11 +1,10 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from .views import PageApi, ContentApi
+from .views import PolicyApi
 
 router = routers.SimpleRouter(trailing_slash=True)
-router.register("static", PageApi, basename="page")
-router.register("content", ContentApi, basename="content")
+router.register("", PolicyApi, basename="policy")
 
 
 urlpatterns = [

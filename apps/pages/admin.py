@@ -1,6 +1,6 @@
 from django.contrib import admin
 from apps.metadata.admin import StaticMetadataInline
-from .models import Page
+from .models import Page, Content
 
 
 # Register your models here.
@@ -29,6 +29,18 @@ class PageAdmin(admin.ModelAdmin):
                 "name",
                 "title",
             ]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=...):
+        return False
+
+
+@admin.register(Content)
+class ProductCatgeoryGroupAdmin(admin.ModelAdmin):
+    fields = ("name", "content")
+    readonly_fields = ["name"]
 
     def has_add_permission(self, request):
         return False

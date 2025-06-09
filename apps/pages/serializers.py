@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from apps.metadata.serializers import StaticMetadataSerializer
-from .models import Page
+from .models import Page, Content
 
 
 class PageSerializer(serializers.ModelSerializer):
@@ -13,4 +13,15 @@ class PageSerializer(serializers.ModelSerializer):
             "slug",
             "title",
             "metadata",
+        )
+
+
+class ContentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Content
+        fields = (
+            "id",
+            "name",
+            "content",
         )

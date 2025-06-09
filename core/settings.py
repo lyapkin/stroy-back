@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "apps.requests",
     "apps.pages",
     "apps.metadata",
+    "apps.policy",
     # third
     "rest_framework",
     "django_filters",
@@ -263,6 +264,30 @@ CKEDITOR_5_CONFIGS = {
         },
     },
     "faq": {
+        "toolbar": [
+            "heading",
+            "|",
+            "bold",
+            "underline",
+            "strikethrough",
+            "|",
+            "sourceEditing",
+            "bulletedList",
+            "numberedList",
+        ],
+        "heading": {
+            "options": [
+                {"model": "paragraph", "title": "Параграф", "class": "ck-heading_paragraph"},
+                {"model": "heading2", "view": "h2", "title": "Заголовок 2", "class": "ck-heading_heading2"},
+            ]
+        },
+        "list": {
+            "properties": {
+                "styles": "false",
+            }
+        },
+    },
+    "content": {
         "toolbar": [
             "heading",
             "|",

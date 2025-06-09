@@ -33,7 +33,7 @@ urlpatterns = [
     path("api/requests/", include("apps.requests.urls")),
     path("api/pages/", include("apps.pages.urls")),
     path("api/metadata/", include("apps.metadata.urls")),
-    # path("api/policy/", include("apps.policy.urls")),
+    path("api/policy/", include("apps.policy.urls")),
 ]
 
 if settings.DEBUG:
