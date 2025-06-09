@@ -67,7 +67,7 @@ class ProductApi(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         qs = self.queryset_by_action[self.action]
-        return qs.all()
+        return qs.all().distinct()
 
     @action(detail=False)
     def remainder(self, request):
