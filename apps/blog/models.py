@@ -41,7 +41,7 @@ class Post(models.Model):
         verbose_name = "блог пост"
         verbose_name_plural = "блог посты"
         ordering = (
-            "created",
+            "-created",
             "-id",
         )
 
