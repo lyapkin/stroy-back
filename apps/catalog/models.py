@@ -147,7 +147,7 @@ class ProductImg(models.Model):
 
 
 class ProductDoc(models.Model):
-    name = models.CharField("название документа", max_length=100, unique=True)
+    name = models.CharField("название документа", max_length=100)
     url = models.FileField("документ", upload_to=product_file_upload_to)
     product = models.ForeignKey(Product, models.CASCADE, related_name="docs", verbose_name="товар")
 
