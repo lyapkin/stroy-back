@@ -24,11 +24,11 @@ class Address(models.Model):
     weekdays = models.CharField("режим работы по будням", max_length=48)
     weekends = models.CharField("режим работы по выходным", max_length=48)
 
-    phone = PhoneField("номер телефона")
+    phone = PhoneField("номер телефона", null=True, blank=True)
 
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT, related_name="addresses", default=1)
 
-    coordinates = models.CharField("координаты", max_length=32, null=True)
+    coordinates = models.CharField("координаты", max_length=32, null=True, blank=True)
 
     class Meta:
         verbose_name = "адрес"
