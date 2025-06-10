@@ -16,7 +16,7 @@ class Contact(models.Model):
 
 
 class Address(models.Model):
-    city = models.CharField("город", max_length=32, unique=True)
+    city = models.CharField("город", max_length=32)
     address = models.CharField("адрес", max_length=128)
 
     caption = models.CharField("подпись", max_length=64)
