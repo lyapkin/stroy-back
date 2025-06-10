@@ -74,8 +74,12 @@ class PhoneField(models.CharField):
 
     def to_python(self, value):
         result = super().to_python(value)
+        if value is None:
+            return value
         return "+" + "".join(c for c in result if c.isdigit())
 
     def pre_save(self, model_instance, add):
         result = super().pre_save(model_instance, add)
+        if result is None:
+            return result
         return "+" + "".join(c for c in result if c.isdigit())
