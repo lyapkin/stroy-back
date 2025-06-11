@@ -7,7 +7,7 @@ class Page(models.Model):
     name = models.CharField("страница", max_length=255, unique=True)
     slug = models.SlugField(max_length=64, unique=True)
 
-    title = models.CharField("заголовок страницы", max_length=72)
+    title = models.CharField("заголовок страницы", max_length=88)
 
     def __str__(self):
         return self.name
