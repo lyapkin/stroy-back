@@ -18,7 +18,7 @@ def email_notification_on_call_request(sender, instance=None, created=False, **k
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
         )
         logger.info(f"Sending email message formed; {subject} {message}")
-        run_send_email.delay(subject, message)
+        run_send_email.delay(subject, message, settings.EMAIL_HOST_USER, settings.EMAIL_FORM_NOTIFICATION_RECEIVER)
 
 
 def email_notification_on_order_request(sender, instance=None, created=False, **kwargs):
@@ -30,7 +30,7 @@ def email_notification_on_order_request(sender, instance=None, created=False, **
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
         )
         logger.info(f"Sending email message formed; {subject} {message}")
-        run_send_email.delay(subject, message)
+        run_send_email.delay(subject, message, settings.EMAIL_HOST_USER, settings.EMAIL_FORM_NOTIFICATION_RECEIVER)
 
 
 def email_notification_on_commercial_request(sender, instance=None, created=False, **kwargs):
@@ -42,4 +42,4 @@ def email_notification_on_commercial_request(sender, instance=None, created=Fals
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
         )
         logger.info(f"Sending email message formed; {subject} {message}")
-        run_send_email.delay(subject, message)
+        run_send_email.delay(subject, message, settings.EMAIL_HOST_USER, settings.EMAIL_FORM_NOTIFICATION_RECEIVER)

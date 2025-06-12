@@ -10,12 +10,11 @@ logger = get_task_logger("stroy.email")
 
 
 @app.task(bind=True)
-def run_send_email(self, subject, message):
+def run_send_email(self, subject, message, sender, receiver):
     logger.info(f"Sending email in celery;")
     try:
-        if settings.EMAIL_HOST_USER:
-            logger.info(f"Sending email celery;")
-            send_mail(subject, message, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER], fail_silently=False)
+        logger.info(f"Sending email celery;")
+        send_mail(subject, message, sender, receiver, fail_silently=False)
     except SMTPException as e:
         logger.info(f"Sending email celery failed; {e}")
         raise self.retry(exc=e, countdown=2 * 60)
