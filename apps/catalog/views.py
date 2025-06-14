@@ -48,7 +48,7 @@ class ProductApi(viewsets.ReadOnlyModelViewSet):
                 queryset=ProductAttribute.objects.select_related("attribute", "value"),
             ),
         ),
-        "remainder": Product.objects.prefetch_related("images"),
+        "remainder": Product.objects.prefetch_related("images").filter(remainder__isnull=False),
     }
     serializer_action_classes = {
         "list": ProductListSerializer,

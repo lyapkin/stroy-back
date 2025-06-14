@@ -76,7 +76,7 @@ class Product(AbstractOrderModel):
     discount = models.PositiveSmallIntegerField(
         "скидка (%)", blank=True, null=True, validators=[MaxValueValidator(99), MinValueValidator(1)]
     )
-    remainder = models.PositiveIntegerField("актуальный остаток")
+    remainder = models.PositiveIntegerField("актуальный остаток", null=True, blank=True)
     stock = models.BooleanField("в наличии", default=True)
     # code = models.CharField("артикул", max_length=32, unique=True, db_index=True)
     description = CKEditor5Field("описание товара", config_name="product")
