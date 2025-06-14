@@ -149,6 +149,7 @@ class ProductRemainderSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "name",
+            "slug",
             "remainder",
             "image",
         )
