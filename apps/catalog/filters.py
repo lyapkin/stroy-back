@@ -31,11 +31,16 @@ class ProductFilter(filters.FilterSet):
     def fitler_attributes(self, qs):
         attributes = self.request.query_params.getlist("attributes", [])
         if attributes:
-            q_objects = Q()
+            attrs = {}
             for attr in attributes:
                 key, value = attr.split(":")
-                q_objects |= Q(attributes__attribute__name=key, attributes__value__name=value)
-            return qs.filter(q_objects)
+                if key in attrs:
+                    attrs[key] |= Q(attributes__attribute__name=key, attributes__value__name=value)
+                else:
+                    attrs[key] = Q(attributes__attribute__name=key, attributes__value__name=value)
+            for key in attrs:
+                qs = qs.filter(attrs[key])
+            return qs
         return qs
 
     def filter_queryset(self, queryset):
