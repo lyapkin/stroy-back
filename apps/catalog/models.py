@@ -101,7 +101,10 @@ class Product(AbstractOrderModel):
 
     @property
     def first_image(self):
-        return self.images.first()
+        image = self.images.first()
+        if image:
+            return image.url
+        return None
 
 
 class AttributeValue(models.Model):

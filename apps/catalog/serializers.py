@@ -120,7 +120,7 @@ class ProductBaseSerialzier(serializers.ModelSerializer):
 
 
 class ProductListSerializer(ProductBaseSerialzier):
-    image = serializers.ImageField(source="first_image.url")
+    image = serializers.ImageField(source="first_image")
 
     class Meta(ProductBaseSerialzier.Meta):
         fields = ProductBaseSerialzier.Meta.fields + ("image",)
@@ -142,7 +142,7 @@ class ProductDetailSerializer(ProductBaseSerialzier):
 
 
 class ProductRemainderSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(source="first_image.url")
+    image = serializers.ImageField(source="first_image")
 
     class Meta:
         model = Product

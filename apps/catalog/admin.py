@@ -80,10 +80,10 @@ class ImgInline(admin.TabularInline):
     fields = ("url", "order")
     template = "admin/image_inline.html"
 
-    def get_formset(self, request, obj=None, **kwargs):
-        formset = super().get_formset(request, obj=None, **kwargs)
-        formset.validate_min = True
-        return formset
+    # def get_formset(self, request, obj=None, **kwargs):
+    #     formset = super().get_formset(request, obj=None, **kwargs)
+    #     formset.validate_min = True
+    #     return formset
 
     class Media:
         js = ("js/admin/add_img_to_list.js",)
