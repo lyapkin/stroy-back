@@ -13,6 +13,7 @@ from .models import (
     Product,
     Attribute,
     AttributeValue,
+    ProductPrice,
 )
 
 
@@ -99,6 +100,18 @@ class ProductAttributeSerializer(serializers.ModelSerializer):
         )
 
 
+class ProductPriceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductPrice
+        fields = (
+            "id",
+            "price",
+            "discount",
+            "name",
+        )
+
+
 class ProductBaseSerialzier(serializers.ModelSerializer):
     attributes = ProductAttributeSerializer(many=True)
 
@@ -109,8 +122,6 @@ class ProductBaseSerialzier(serializers.ModelSerializer):
             "name",
             "slug",
             "stock",
-            "price",
-            "discount",
             "attributes",
         )
 
@@ -121,15 +132,31 @@ class ProductBaseSerialzier(serializers.ModelSerializer):
 
 class ProductListSerializer(ProductBaseSerialzier):
     image = serializers.ImageField(source="first_image")
+    price = serializers.SerializerMethodField()
 
     class Meta(ProductBaseSerialzier.Meta):
-        fields = ProductBaseSerialzier.Meta.fields + ("image",)
+        fields = ProductBaseSerialzier.Meta.fields + (
+            "image",
+            "price",
+        )
+
+    def get_price(self, product):
+        count = product.prices.count()
+        price = product.prices.first()
+        price_repr = ProductPriceSerializer(price).data
+        if count > 1:
+            price_repr.update({"single": False})
+        else:
+            price_repr.update({"single": True})
+
+        return price_repr
 
 
 class ProductDetailSerializer(ProductBaseSerialzier):
     images = ProductImgSerializer(many=True)
     docs = ProductDocSerializer(many=True)
     metadata = ProductMetadataSerializer()
+    prices = ProductPriceSerializer(many=True)
 
     class Meta(ProductBaseSerialzier.Meta):
         fields = ProductBaseSerialzier.Meta.fields + (
@@ -138,6 +165,18 @@ class ProductDetailSerializer(ProductBaseSerialzier):
             "images",
             "docs",
             "metadata",
+            "prices",
+        )
+
+
+class ProductCartSerializer(ProductBaseSerialzier):
+    image = serializers.ImageField(source="first_image")
+    prices = ProductPriceSerializer(many=True)
+
+    class Meta(ProductBaseSerialzier.Meta):
+        fields = ProductBaseSerialzier.Meta.fields + (
+            "image",
+            "prices",
         )
 
 

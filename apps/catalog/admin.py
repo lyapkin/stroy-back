@@ -11,6 +11,7 @@ from .models import (
     Attribute,
     Product,
     AttributeValue,
+    ProductPrice,
 )
 
 
@@ -56,7 +57,6 @@ class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMix
         "order",
     )
     prepopulated_fields = {"slug": ["name"]}
-    # filter_horizontal = ("group",)
     inlines = (
         AttributeInline,
         CategoryMetadataInline,
@@ -79,11 +79,6 @@ class ImgInline(admin.TabularInline):
     extra = 0
     fields = ("url", "order")
     template = "admin/image_inline.html"
-
-    # def get_formset(self, request, obj=None, **kwargs):
-    #     formset = super().get_formset(request, obj=None, **kwargs)
-    #     formset.validate_min = True
-    #     return formset
 
     class Media:
         js = ("js/admin/add_img_to_list.js",)
@@ -115,6 +110,22 @@ class ProductAttributeInline(admin.TabularInline):
         )
 
 
+class ProductPriceInline(admin.TabularInline):
+    model = ProductPrice
+    min_num = 1
+    extra = 0
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj=None, **kwargs)
+        formset.validate_min = True
+        formset.default_error_messages["too_few_forms"] = "Должна быть минимум одна цена"
+        if obj:
+            formset.default_error_messages["too_few_forms"] = (
+                'Должна быть минимум одна цена (Возможно, вы пытаетесь удалить единственную цену - уберите галочку "удалить")'
+            )
+        return formset
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
     actions = ("generate_metadata",)
@@ -122,16 +133,15 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         "name",
         "slug",
         "category",
-        "price",
-        "discount",
         "stock",
         "remainder",
         "description",
         "order",
     ]
     prepopulated_fields = {"slug": ["name"]}
-    list_display = ["name", "price"]
+    list_display = ["name"]
     inlines = (
+        ProductPriceInline,
         ProductAttributeInline,
         ImgInline,
         DocInline,
@@ -142,23 +152,3 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         if obj:
             return ["category"]
         return super().get_readonly_fields(request, obj)
-
-
-# class AttributeValueInline(admin.TabularInline):
-#     model = AttributeValue
-
-#     prepopulated_fields = {"slug": ["name"]}
-
-#     def get_formset(self, request, obj=..., **kwargs):
-#         fs = super().get_formset(request, obj, **kwargs)
-#         fs.form.base_fields["slug"].required = False
-#         return fs
-
-#     verbose_name = "Возможное значение характеристики"
-#     verbose_name_plural = "Возможные значения характеристики"
-
-
-# @admin.register(Attribute)
-# class AttributeAdmin(admin.ModelAdmin):
-#     prepopulated_fields = {"slug": ["name"]}
-#     inlines = (AttributeValueInline,)

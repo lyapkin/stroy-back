@@ -44,7 +44,7 @@ class OrderRequestItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderRequestItem
         fields = (
-            "product",
+            "variant",
             "quantity",
         )
 
@@ -62,7 +62,11 @@ class OrderReqeustSerializer(BaseRequestSerializer):
         order_items = list(
             map(
                 lambda item: OrderRequestItem(
-                    **item, price=calculate_item_price(item["product"].price, item["product"].discount), order=instance
+                    **item,
+                    price=calculate_item_price(item["variant"].price, item["variant"].discount),
+                    order=instance,
+                    product=item["variant"].product,
+                    variant_text=item["variant"].name
                 ),
                 order_items,
             )

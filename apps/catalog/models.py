@@ -72,13 +72,8 @@ class Product(AbstractOrderModel):
     category = models.ForeignKey(
         ProductCategory, models.PROTECT, related_name="products", verbose_name="категория товара"
     )
-    price = models.PositiveIntegerField("цена")
-    discount = models.PositiveSmallIntegerField(
-        "скидка (%)", blank=True, null=True, validators=[MaxValueValidator(99), MinValueValidator(1)]
-    )
     remainder = models.PositiveIntegerField("актуальный остаток", null=True, blank=True)
     stock = models.BooleanField("в наличии", default=True)
-    # code = models.CharField("артикул", max_length=32, unique=True, db_index=True)
     description = CKEditor5Field("описание товара", config_name="product")
 
     @property
@@ -88,13 +83,6 @@ class Product(AbstractOrderModel):
     class Meta(AbstractOrderModel.Meta):
         verbose_name = "товар"
         verbose_name_plural = "товары"
-        constraints = [
-            models.CheckConstraint(
-                condition=models.Q(discount__gte=1) & models.Q(discount__lte=99),
-                name="%(app_label)s_%(class)s_discount_range",
-                violation_error_message="Скидка должна быть в диапазоне от 1 до 99",
-            ),
-        ]
 
     def __str__(self):
         return self.name
@@ -105,6 +93,37 @@ class Product(AbstractOrderModel):
         if image:
             return image.url
         return None
+
+
+class ProductPrice(AbstractOrderModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="prices")
+    name = models.CharField("вариация товара", max_length=24, blank=True)
+
+    price = models.PositiveIntegerField("цена")
+    discount = models.PositiveSmallIntegerField(
+        "скидка (%)", blank=True, null=True, validators=[MaxValueValidator(99), MinValueValidator(1)]
+    )
+
+    class Meta(AbstractOrderModel.Meta):
+        verbose_name = "цена"
+        verbose_name_plural = "цены"
+        constraints = [
+            models.UniqueConstraint(
+                fields=(
+                    "product",
+                    "name",
+                ),
+                name="unique_product_name",
+            ),
+            models.CheckConstraint(
+                condition=models.Q(discount__gte=1) & models.Q(discount__lte=99),
+                name="%(app_label)s_%(class)s_discount_range",
+                violation_error_message="Скидка должна быть в диапазоне от 1 до 99",
+            ),
+        ]
+
+    def __str__(self):
+        return self.name if self.name else str(self.price) + " Руб"
 
 
 class AttributeValue(models.Model):

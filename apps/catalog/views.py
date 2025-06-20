@@ -1,16 +1,17 @@
-from django.db.models import Prefetch
+from django.db.models import Prefetch, F, Case, When
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, action
 from rest_framework import mixins, viewsets, filters
 from django_filters import rest_framework as django_filters
 from shared.paginations import BasePagination
 from shared.utils import is_int
-from .models import ProductCategory, ProductCategoryGroup, Product, ProductAttribute, Attribute
+from .models import ProductCategory, ProductCategoryGroup, Product, ProductAttribute, Attribute, ProductPrice
 from .serializers import (
     ProductCategoryGroupSerializer,
     ProductCategoryItemSerializer,
     ProductListSerializer,
     ProductDetailSerializer,
+    ProductCartSerializer,
     ProductRemainderSerializer,
     AttributeSerializer,
 )
@@ -36,11 +37,20 @@ class ProductApi(viewsets.ReadOnlyModelViewSet):
         "list": Product.objects.select_related("category").prefetch_related(
             "images",
             Prefetch(
+                "prices",
+                queryset=ProductPrice.objects.annotate(
+                    result_price=Case(
+                        When(discount=None, then="price"), default=F("price") - F("price") * F("discount") / 100
+                    )
+                ).order_by("result_price"),
+            ),
+            Prefetch(
                 "attributes",
                 queryset=ProductAttribute.objects.select_related("attribute", "value"),
             ),
         ),
         "retrieve": Product.objects.prefetch_related(
+            "prices",
             "images",
             "docs",
             Prefetch(
@@ -79,16 +89,24 @@ class ProductApi(viewsets.ReadOnlyModelViewSet):
 
 # cart
 class CartApi(viewsets.GenericViewSet, mixins.ListModelMixin):
-    queryset = Product.objects.prefetch_related(
-        "images",
-        Prefetch(
-            "attributes",
-            queryset=ProductAttribute.objects.select_related("attribute", "value"),
-        ),
-    )
-    serializer_class = ProductListSerializer
+    serializer_class = ProductCartSerializer
     filter_backends = [django_filters.DjangoFilterBackend]
     filterset_class = CartFilter
+
+    def get_queryset(self):
+        ids = self.request.query_params.get("id").split(",")
+        ids = [i for i in ids if is_int(i)]
+        return Product.objects.prefetch_related(
+            "images",
+            Prefetch(
+                "attributes",
+                queryset=ProductAttribute.objects.select_related("attribute", "value"),
+            ),
+            Prefetch(
+                "prices",
+                queryset=ProductPrice.objects.filter(id__in=ids),
+            ),
+        ).distinct()
 
     @action(detail=False, methods=["get"])
     def exist(self, request):
@@ -96,7 +114,7 @@ class CartApi(viewsets.GenericViewSet, mixins.ListModelMixin):
         if bool(ids):
             ids = ids.split(",")
             ids = [i for i in ids if is_int(i)]
-            return Response(Product.objects.filter(id__in=ids).values_list("id", flat=True))
+            return Response(ProductPrice.objects.filter(id__in=ids).values_list("id", flat=True))
 
         return Response([])
 

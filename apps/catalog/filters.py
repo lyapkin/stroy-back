@@ -1,21 +1,16 @@
 from django_filters import rest_framework as filters
-from django.db.models import F, Q, Case, When, Value
+from django.db.models import F, Q, Case, When
 from rest_framework import filters as drf_filters
-from .models import Product, ProductCategoryGroup, ProductCategory, ProductAttribute
+from .models import Product
 
 
 class ProductFilter(filters.FilterSet):
     category = filters.CharFilter(
         field_name="category__slug",
         lookup_expr="iexact",
-        # to_field_name="slug",
-        # queryset=ProductCategory.objects.all(),
     )
-    # id = filters.AllValuesMultipleFilter(field_name="id")
     group = filters.CharFilter(
         field_name="category__group__slug",
-        # to_field_name="slug",
-        # queryset=ProductCategoryGroup.objects.all(),
         lookup_expr="iexact",
     )
 
@@ -24,7 +19,6 @@ class ProductFilter(filters.FilterSet):
         fields = (
             "category",
             "stock",
-            # "id",
             "group",
         )
 
@@ -82,7 +76,7 @@ class NumberInFilter(filters.BaseInFilter, filters.NumberFilter):
 
 
 class CartFilter(filters.FilterSet):
-    id = NumberInFilter(field_name="id", lookup_expr="in")
+    id = NumberInFilter(field_name="prices__id", lookup_expr="in")
 
     class Meta:
         model = Product

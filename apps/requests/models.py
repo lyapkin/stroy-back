@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from shared.utils import commercial_request_file_upload_to
-from apps.catalog.models import Product
+from apps.catalog.models import Product, ProductPrice
 
 
 # Create your models here.
@@ -51,6 +51,11 @@ class OrderRequestItem(models.Model):
     product = models.ForeignKey(Product, models.SET_NULL, null=True, verbose_name="товар")
     quantity = models.PositiveIntegerField("количество")
     price = models.PositiveIntegerField("цена на момент запроса со скидкой")
+
+    variant = models.ForeignKey(
+        ProductPrice, models.SET_NULL, null=True, verbose_name="текущее название вариации товара"
+    )
+    variant_text = models.CharField("название вариации на момент запроса", max_length=24)
 
     class Meta:
         verbose_name = "товар"
