@@ -12,7 +12,7 @@ class PostCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(SlugNotRequiredModelAdmin):
-    fields = ["name", "slug", "categories", "excerpt", "preview", "content"]
+    fields = ["name", "slug", "categories", "excerpt", "preview", "video", "content"]
     list_display = ["name", "updated", "created"]
     filter_horizontal = ("categories",)
     prepopulated_fields = {"slug": ["name"]}

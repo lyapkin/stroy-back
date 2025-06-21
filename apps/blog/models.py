@@ -31,6 +31,8 @@ class Post(models.Model):
 
     content = CKEditor5Field("пост", config_name="post")
 
+    video = models.URLField("ссылка на видео", null=True, blank=True)
+
     created = models.DateField("дата создания", auto_now_add=True)
     updated = models.DateField("дата обновления", auto_now=True)
 
