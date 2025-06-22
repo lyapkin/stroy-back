@@ -147,6 +147,7 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         DocInline,
         ProductMetadataInline,
     )
+    ordering = ["name"]
 
     def get_readonly_fields(self, request, obj=...):
         if obj:
