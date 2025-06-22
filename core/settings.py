@@ -315,6 +315,9 @@ CKEDITOR_5_CONFIGS = {
             "|",
             "sourceEditing",
             "bulletedList",
+            "numberedList",
+            "indent",
+            "outdent",
         ],
         "heading": {
             "options": [
@@ -326,6 +329,7 @@ CKEDITOR_5_CONFIGS = {
         "list": {
             "properties": {
                 "styles": "false",
+                "startIndex": "true",
             }
         },
     },
