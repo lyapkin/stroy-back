@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from shared.utils import commercial_request_file_upload_to
 from apps.catalog.models import Product, ProductPrice
+from .validators import FileValidator
 
 
 # Create your models here.
@@ -16,7 +17,11 @@ class AbstractBaseRequest(models.Model):
 
 
 class CommercialRequest(AbstractBaseRequest):
-    file = models.FileField("чертеж", upload_to=commercial_request_file_upload_to)
+    file = models.FileField(
+        "чертеж",
+        upload_to=commercial_request_file_upload_to,
+        validators=[FileValidator(content_types=("application/pdf"), max_size=10485760)],
+    )
 
     class Meta:
         verbose_name = "запрос коммерческого предложения"
