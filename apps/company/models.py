@@ -6,6 +6,8 @@ from .fields import PhoneField
 class Contact(models.Model):
     email = models.EmailField("основной email")
     phone = PhoneField("основной номер телефона")
+    tg = models.CharField("telegram", max_length=24)
+    wa = models.CharField("whatsapp", max_length=24)
 
     class Meta:
         verbose_name = "контакты"

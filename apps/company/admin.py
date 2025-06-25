@@ -56,8 +56,28 @@ class ContactsAdmin(admin.ModelAdmin):
     fields = [
         "email",
         "phone",
+        "tg_instruction",
+        "tg",
+        "wa_instruction",
+        "wa",
     ]
     inlines = (AdditionalPhoneInline, AdditionalEmailInline)
+
+    def tg_instruction(self, instance):
+        return "Номер телефона через + (например, +79221113344) или никнейм (например, nickname)"
+
+    tg_instruction.short_description = "Инструкция для Telegram"
+
+    def wa_instruction(self, instance):
+        return "Номер (например, 79221113344)"
+
+    wa_instruction.short_description = "Инструкция для Whatsapp"
+
+    def get_readonly_fields(self, request, obj=None):
+        return [
+            "tg_instruction",
+            "wa_instruction",
+        ]
 
     def get_form(self, request, obj=..., change=..., **kwargs):
         form = super().get_form(request, obj, change, **kwargs)
