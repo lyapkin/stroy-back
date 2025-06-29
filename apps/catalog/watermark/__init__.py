@@ -5,7 +5,6 @@ from django.conf import settings
 
 def watermark_img(path):
     watermark_logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo.png")
-    print(watermark_logo_path)
     original = Image.open(path).convert("RGBA")
     watermark = Image.open(watermark_logo_path).convert("RGBA")
 
