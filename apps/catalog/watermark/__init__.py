@@ -22,6 +22,8 @@ def watermark_img(path):
     x = (original.width - watermark.width) // 2
     y = (original.height - watermark.height) // 2
     original.paste(watermark, (x, y), watermark)
-    if original.format == "JPEG":
+    try:
+        original.save(path)
+    except OSError as e:
         original = original.convert("RGB")
-    original.save(path)
+        original.save(path)
