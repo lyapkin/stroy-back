@@ -20,6 +20,7 @@ class ProductCategoryGroup(AbstractOrderModel):
     name = models.CharField("название", max_length=48, unique=True)
     slug = models.SlugField("url (slug)", max_length=64, unique=True)
     image = models.ImageField("картинка", upload_to=category_group_image_upload_to, null=True)
+    description = CKEditor5Field("описание", config_name="category", blank=True, null=True)
 
     class Meta(AbstractOrderModel.Meta):
         verbose_name = "группа категории товара"
@@ -35,6 +36,7 @@ class ProductCategory(AbstractOrderModel):
     group = models.ForeignKey(
         ProductCategoryGroup, related_name="categories", on_delete=models.RESTRICT, verbose_name="группа категории"
     )
+    description = CKEditor5Field("описание", config_name="category", blank=True, null=True)
 
     class Meta(AbstractOrderModel.Meta):
         verbose_name = "категория товара"

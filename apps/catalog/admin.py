@@ -24,6 +24,7 @@ class ProductCatgeoryGroupAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         "slug",
         "image",
         "order",
+        "description",
     )
     prepopulated_fields = {"slug": ["name"]}
     inlines = (CategoryGroupMetadataInline,)
@@ -55,6 +56,7 @@ class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMix
         "slug",
         "group",
         "order",
+        "description",
     )
     prepopulated_fields = {"slug": ["name"]}
     inlines = (

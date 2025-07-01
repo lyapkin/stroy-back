@@ -25,6 +25,7 @@ class ProductCategorySerializer(serializers.ModelSerializer):
             "id",
             "name",
             "slug",
+            "description",
         )
 
 
@@ -40,6 +41,7 @@ class ProductCategoryGroupSerializer(serializers.ModelSerializer):
             "slug",
             "image",
             "categories",
+            "description",
             "metadata",
         )
 
