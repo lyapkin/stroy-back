@@ -21,6 +21,8 @@ class CommercialRequest(AbstractBaseRequest):
         "чертеж",
         upload_to=commercial_request_file_upload_to,
         validators=[FileValidator(content_types=("application/pdf"), max_size=10485760)],
+        null=True,
+        blank=True,
     )
 
     class Meta:

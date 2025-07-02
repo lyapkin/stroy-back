@@ -22,7 +22,7 @@ class CommercialRequestApi(viewsets.GenericViewSet, mixins.CreateModelMixin):
         message = (
             f"Запрос коммерческого предложения сайта.\n\n"
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
-            f"Ссылка на файл: {self.request.build_absolute_uri(instance.file.url)}"
+            f"Ссылка на файл: {instance.file and self.request.build_absolute_uri(instance.file.url)}"
         )
 
         send_email_notification(subject, message)
