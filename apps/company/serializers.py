@@ -65,6 +65,7 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = (
             "email",
             "phone",
+            "phone2",
             "tg",
             "wa",
             "phones",

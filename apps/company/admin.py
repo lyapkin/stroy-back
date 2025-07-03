@@ -56,6 +56,7 @@ class ContactsAdmin(admin.ModelAdmin):
     fields = [
         "email",
         "phone",
+        "phone2",
         "tg_instruction",
         "tg",
         "wa_instruction",
@@ -82,6 +83,7 @@ class ContactsAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=..., change=..., **kwargs):
         form = super().get_form(request, obj, change, **kwargs)
         form.base_fields["phone"].widget = forms.TelInput()
+        form.base_fields["phone2"].widget = forms.TelInput()
         return form
 
     def has_add_permission(self, request):

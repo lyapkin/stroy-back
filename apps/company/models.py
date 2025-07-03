@@ -6,6 +6,7 @@ from .fields import PhoneField
 class Contact(models.Model):
     email = models.EmailField("основной email")
     phone = PhoneField("основной номер телефона")
+    phone2 = PhoneField("основной номер телефона 2", null=True, blank=True)
     tg = models.CharField("telegram", max_length=24)
     wa = models.CharField("whatsapp", max_length=24)
 
