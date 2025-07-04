@@ -12,6 +12,7 @@ from .models import (
     Product,
     AttributeValue,
     ProductPrice,
+    ProductRedirectFrom,
 )
 
 
@@ -128,6 +129,11 @@ class ProductPriceInline(admin.TabularInline):
         return formset
 
 
+class ProductRedirectFromInline(admin.TabularInline):
+    model = ProductRedirectFrom
+    extra = 1
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
     actions = ("generate_metadata",)
@@ -148,6 +154,7 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         ImgInline,
         DocInline,
         ProductMetadataInline,
+        ProductRedirectFromInline,
     )
     ordering = ["name"]
 

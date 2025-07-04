@@ -1,11 +1,21 @@
 from django.db.models import Prefetch, F, Case, When
+from django.shortcuts import get_object_or_404, redirect
+from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, action
 from rest_framework import mixins, viewsets, filters
 from django_filters import rest_framework as django_filters
 from shared.paginations import BasePagination
 from shared.utils import is_int
-from .models import ProductCategory, ProductCategoryGroup, Product, ProductAttribute, Attribute, ProductPrice
+from .models import (
+    ProductCategory,
+    ProductCategoryGroup,
+    Product,
+    ProductAttribute,
+    Attribute,
+    ProductPrice,
+    ProductRedirectFrom,
+)
 from .serializers import (
     ProductCategoryGroupSerializer,
     ProductCategoryItemSerializer,
@@ -78,6 +88,13 @@ class ProductApi(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         qs = self.queryset_by_action[self.action]
         return qs.all().distinct()
+
+    def retrieve(self, request, slug, *args, **kwargs):
+        try:
+            return super().retrieve(request, slug, *args, **kwargs)
+        except Http404:
+            active_slug = get_object_or_404(ProductRedirectFrom, old_slug=slug)
+            return redirect(f"/{active_slug.to.slug}/", permanent=True)
 
     @action(detail=False)
     def remainder(self, request):

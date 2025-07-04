@@ -202,3 +202,28 @@ class ProductAttribute(AbstractOrderModel):
                 name="unique_product_attribute",
             ),
         ]
+
+
+# redirects
+class AbstractRedirectsFrom(models.Model):
+    old_slug = models.CharField("старый url", max_length=60, unique=True)
+
+    def __str__(self):
+        return f"старый слаг: {self.old_slug}; к: {self.to.name}"
+
+    class Meta:
+        abstract = True
+        verbose_name = "Старый слаг (url)"
+        verbose_name_plural = "Старые слаги (url)"
+
+
+class ProductRedirectFrom(AbstractRedirectsFrom):
+    to = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+
+class ProductCategoryGroupRedirectFrom(AbstractRedirectsFrom):
+    to = models.ForeignKey(ProductCategoryGroup, on_delete=models.CASCADE)
+
+
+class ProductCategoryRedirectFrom(AbstractRedirectsFrom):
+    to = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
