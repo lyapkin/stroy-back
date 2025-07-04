@@ -13,12 +13,19 @@ from .models import (
     AttributeValue,
     ProductPrice,
     ProductRedirectFrom,
+    ProductCategoryRedirectFrom,
+    ProductCategoryGroupRedirectFrom,
 )
 
 
 # Register your models here.
+class ProductCategoryGroupRedirectFromInline(admin.TabularInline):
+    model = ProductCategoryGroupRedirectFrom
+    extra = 1
+
+
 @admin.register(ProductCategoryGroup)
-class ProductCatgeoryGroupAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
+class ProductCategoryGroupAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
     actions = ("generate_metadata",)
     fields = (
         "name",
@@ -28,7 +35,10 @@ class ProductCatgeoryGroupAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         "description",
     )
     prepopulated_fields = {"slug": ["name"]}
-    inlines = (CategoryGroupMetadataInline,)
+    inlines = (
+        CategoryGroupMetadataInline,
+        ProductCategoryGroupRedirectFromInline,
+    )
 
     def get_form(self, request, obj=..., change=..., **kwargs):
         form = super().get_form(request, obj, change, **kwargs)
@@ -49,6 +59,11 @@ class AttributeInline(nested_admin.NestedTabularInline):
     extra = 0
 
 
+class ProductCategoryredirectFromInline(nested_admin.NestedInlineModelAdminMixin, admin.TabularInline):
+    model = ProductCategoryRedirectFrom
+    extra = 1
+
+
 @admin.register(ProductCategory)
 class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMixin):
     actions = ("generate_metadata",)
@@ -63,6 +78,7 @@ class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMix
     inlines = (
         AttributeInline,
         CategoryMetadataInline,
+        ProductCategoryredirectFromInline,
     )
 
     def get_form(self, request, obj=..., change=..., **kwargs):

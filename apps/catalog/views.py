@@ -15,6 +15,8 @@ from .models import (
     Attribute,
     ProductPrice,
     ProductRedirectFrom,
+    ProductCategoryRedirectFrom,
+    ProductCategoryGroupRedirectFrom,
 )
 from .serializers import (
     ProductCategoryGroupSerializer,
@@ -34,11 +36,25 @@ class ProductCategoryGroupApi(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductCategoryGroupSerializer
     lookup_field = "slug"
 
+    def retrieve(self, request, slug, *args, **kwargs):
+        try:
+            return super().retrieve(request, slug, *args, **kwargs)
+        except Http404:
+            active_slug = get_object_or_404(ProductCategoryGroupRedirectFrom, old_slug=slug)
+            return redirect(f"/{active_slug.to.slug}/", permanent=True)
+
 
 class ProductCategoryApi(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
     queryset = ProductCategory.objects.select_related("group").all()
     serializer_class = ProductCategoryItemSerializer
     lookup_field = "slug"
+
+    def retrieve(self, request, slug, *args, **kwargs):
+        try:
+            return super().retrieve(request, slug, *args, **kwargs)
+        except Http404:
+            active_slug = get_object_or_404(ProductCategoryRedirectFrom, old_slug=slug)
+            return redirect(f"/{active_slug.to.group.slug}/{active_slug.to.slug}/", permanent=True)
 
 
 # product
