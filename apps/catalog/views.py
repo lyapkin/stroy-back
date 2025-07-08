@@ -158,7 +158,6 @@ class AttributeApi(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = AttributeSerializer
 
     def get_queryset(self):
-        print(self.request, self.kwargs)
         if self.kwargs.get("category_slug"):
             return self.queryset.filter(category__slug=self.kwargs.get("category_slug"))
         return super().get_queryset()
