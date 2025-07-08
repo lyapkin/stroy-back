@@ -1,7 +1,7 @@
 from django_filters import rest_framework as filters
-from django.db.models import F, Q, Case, When
+from django.db.models import F, Q, Case, When, OuterRef, Subquery
 from rest_framework import filters as drf_filters
-from .models import Product
+from .models import Product, ProductPrice
 
 
 class ProductFilter(filters.FilterSet):
@@ -61,9 +61,22 @@ class PriceOrderingFilter(drf_filters.OrderingFilter):
                     new_ordering.append(field)
             if price:
 
+                # return queryset.annotate(
+                #     result_price=Case(
+                #         When(discount=None, then="price"), default=F("price") - F("price") * F("discount") / 100
+                #     )
+                # ).order_by(*new_ordering)
                 return queryset.annotate(
-                    result_price=Case(
-                        When(discount=None, then="price"), default=F("price") - F("price") * F("discount") / 100
+                    result_price=Subquery(
+                        ProductPrice.objects.filter(product=OuterRef("pk"))
+                        .annotate(
+                            result_price=Case(
+                                When(discount=None, then="price"),
+                                default=F("price") - F("price") * F("discount") / 100,
+                            )
+                        )
+                        .order_by(*new_ordering)
+                        .values("result_price")[:1]
                     )
                 ).order_by(*new_ordering)
             return queryset.order_by(*new_ordering)
