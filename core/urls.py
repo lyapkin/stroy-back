@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from apps.metadata.views import robots
+from apps.catalog.views import ya_feed
 
 urlpatterns = [
     path("robots.txt", robots),
@@ -34,6 +35,7 @@ urlpatterns = [
     path("api/pages/", include("apps.pages.urls")),
     path("api/metadata/", include("apps.metadata.urls")),
     path("api/policy/", include("apps.policy.urls")),
+    path("yml.xml", ya_feed),
 ]
 
 if settings.DEBUG:

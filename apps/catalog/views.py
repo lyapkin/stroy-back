@@ -1,6 +1,9 @@
+from datetime import datetime, timezone
+from xml.etree.ElementTree import Element, SubElement, tostring
 from django.db.models import Prefetch, F, Case, When
 from django.shortcuts import get_object_or_404, redirect
-from django.http import Http404
+from django.http import Http404, HttpResponse
+from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, action
 from rest_framework import mixins, viewsets, filters
@@ -174,3 +177,61 @@ def category_attributes(request, id):
 def attribute_values(request, id):
     attrs = Attribute.objects.get(id=id).values.all().values_list("id", "name")
     return Response(attrs)
+
+
+# yandex feed
+@api_view(["GET"])
+def ya_feed(request):
+    root = Element("yml_catalog", attrib={"date": str(datetime.now().astimezone().isoformat())})
+    shop = SubElement(root, "shop")
+
+    name = SubElement(shop, "name")
+    name.text = "Строительные технологии"
+
+    company = SubElement(shop, "company")
+    company.text = 'ООО "Строитльные технологии"'
+
+    url = SubElement(shop, "url")
+    url.text = settings.SITE_DOMAIN
+
+    currencies = SubElement(shop, "currencies")
+    currency = SubElement(currencies, "currency", attrib={"id": "RUB", "rate": "1"})
+
+    categories = SubElement(shop, "categories")
+    for cat in ProductCategoryGroup.objects.all():
+        category = SubElement(categories, "category", attrib={"id": str(cat.id)})
+        category.text = cat.name
+
+    offers = SubElement(shop, "offers")
+    products = (
+        ProductPrice.objects.prefetch_related("product")
+        .annotate(
+            result_price=Case(
+                When(discount=None, then="price"),
+                default=F("price") - F("price") * F("discount") / 100,
+            )
+        )
+        .all()
+    )
+    for product in products:
+        offer = SubElement(offers, "offer", attrib={"id": str(product.id)})
+        name = SubElement(offer, "name")
+        name.text = product.product.name
+        url = SubElement(offer, "url")
+        url.text = f"{settings.SITE_DOMAIN}/product/{product.product.slug}/"
+        price = SubElement(offer, "price")
+        price.text = str(product.result_price)
+        if product.discount:
+            oldPrice = SubElement(offer, "oldprice")
+            oldPrice.text = str(product.price)
+        currencyId = SubElement(offer, "currencyId")
+        currencyId.text = "RUB"
+        categoryId = SubElement(offer, "categoryId")
+        categoryId.text = str(product.product.category.group.id)
+        picture = SubElement(offer, "picture")
+        picture.text = settings.SITE_DOMAIN + product.product.first_image.url if product.product.first_image else ""
+        description = SubElement(offer, "description")
+        description.text = f"<![CDATA[{product.product.description}]]>"
+
+    xml_string = tostring(root, encoding="utf-8", xml_declaration=True)
+    return HttpResponse(xml_string, content_type="application/xml")
