@@ -216,7 +216,7 @@ def ya_feed(request):
     for product in products:
         offer = SubElement(offers, "offer", attrib={"id": str(product.id)})
         name = SubElement(offer, "name")
-        name.text = product.product.name
+        name.text = f"{product.product.name}{" " + product.name if product.name else ""}"
         url = SubElement(offer, "url")
         url.text = f"{settings.SITE_DOMAIN}/product/{product.product.slug}/"
         price = SubElement(offer, "price")
