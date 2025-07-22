@@ -78,7 +78,7 @@ class OrderRequestApi(viewsets.GenericViewSet, mixins.CreateModelMixin):
                 f"\n\tНазвание товара: {item.product.name}\n"
                 f"\tВариант товара: {item.variant_text}\n"
                 f"\tКоличество: {item.quantity}\n"
-                f"\tЦена на момент запроса (с учетом скидки): {item.price}\n"
+                f"\tЦена на момент запроса (с учетом скидки, за единицу): {item.price}\n"
             )
         print(message)
 
