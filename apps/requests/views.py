@@ -23,6 +23,7 @@ class CommercialRequestApi(viewsets.GenericViewSet, mixins.CreateModelMixin):
             f"Запрос коммерческого предложения сайта.\n\n"
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
             f"Ссылка на файл: {instance.file and self.request.build_absolute_uri(instance.file.url)}"
+            f"Комментарий: {instance.comment and instance.comment}"
         )
 
         send_email_notification(subject, message)
@@ -45,6 +46,7 @@ class ConsultaionReqeustApi(viewsets.GenericViewSet, mixins.CreateModelMixin):
         message = (
             f"Запрос консультации с сайта.\n\n"
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
+            f"Комментарий: {instance.comment and instance.comment}"
         )
 
         send_email_notification(subject, message)
@@ -67,6 +69,17 @@ class OrderRequestApi(viewsets.GenericViewSet, mixins.CreateModelMixin):
         message = (
             f"Запрос из корзины сайта.\n\n"
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
+            f"Комментарий: {instance.comment and instance.comment}\n"
+            f"Товары:\n"
         )
+
+        for item in instance.items.all():
+            message = message + (
+                f"\n\tНазвание товара: {item.product.name}\n"
+                f"\tВариант товара: {item.variant_text}\n"
+                f"\tКоличество: {item.quantity}\n"
+                f"\tЦена на момент запроса (с учетом скидки): {item.price}\n"
+            )
+        print(message)
 
         send_email_notification(subject, message)
