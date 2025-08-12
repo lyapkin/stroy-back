@@ -76,6 +76,7 @@ class Product(AbstractOrderModel):
     )
     remainder = models.PositiveIntegerField("актуальный остаток", null=True, blank=True)
     stock = models.BooleanField("в наличии", default=True)
+    best_price = models.BooleanField("гарантия лучшей цены", default=False)
     description = CKEditor5Field("описание товара", config_name="product")
 
     @property

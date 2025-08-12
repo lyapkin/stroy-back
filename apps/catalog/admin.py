@@ -158,6 +158,7 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         "slug",
         "category",
         "stock",
+        "best_price",
         "remainder",
         "description",
         "order",

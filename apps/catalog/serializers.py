@@ -125,6 +125,7 @@ class ProductBaseSerialzier(serializers.ModelSerializer):
             "slug",
             "stock",
             "attributes",
+            "best_price",
         )
 
     def to_representation(self, instance):
