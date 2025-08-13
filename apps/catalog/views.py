@@ -98,7 +98,7 @@ class ProductApi(viewsets.ReadOnlyModelViewSet):
     pagination_class = BasePagination
     filter_backends = [django_filters.DjangoFilterBackend, filters.SearchFilter, PriceOrderingFilter]
     filterset_class = ProductFilter
-    search_fields = ["name"]
+    search_fields = ["name", "description"]
     ordering_fields = ["price"]
 
     def get_serializer_class(self):
