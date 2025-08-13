@@ -24,6 +24,7 @@ class CommercialRequestApi(viewsets.GenericViewSet, mixins.CreateModelMixin):
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
             f"Ссылка на файл: {instance.file and self.request.build_absolute_uri(instance.file.url)}"
             f"Комментарий: {instance.comment and instance.comment}"
+            f"\n\n\nДоп. информация:\n\n{instance.addition}"
         )
 
         send_email_notification(subject, message)
@@ -47,6 +48,7 @@ class ConsultaionReqeustApi(viewsets.GenericViewSet, mixins.CreateModelMixin):
             f"Запрос консультации с сайта.\n\n"
             f"Контактное лицо: {instance.name}\n" + f"Номер телефона: {instance.phone}\n"
             f"Комментарий: {instance.comment and instance.comment}"
+            f"\n\n\nДоп. информация:\n\n{instance.addition}"
         )
 
         send_email_notification(subject, message)
@@ -80,6 +82,7 @@ class OrderRequestApi(viewsets.GenericViewSet, mixins.CreateModelMixin):
                 f"\tКоличество: {item.quantity}\n"
                 f"\tЦена на момент запроса (с учетом скидки, за единицу): {item.price}\n"
             )
+        message = message + f"\n\n\nДоп. информация:\n\n{instance.addition}"
         print(message)
 
         send_email_notification(subject, message)

@@ -10,6 +10,7 @@ class AbstractBaseRequest(models.Model):
     name = models.CharField("имя", max_length=32, validators=[MinLengthValidator(2), MaxLengthValidator(32)])
     phone = models.CharField("номер телефона", max_length=20)
     comment = models.TextField("комментарий", blank=True)
+    addition = models.TextField("доп. информация", blank=True)
     date = models.DateTimeField("дата", auto_now_add=True)
 
     class Meta:

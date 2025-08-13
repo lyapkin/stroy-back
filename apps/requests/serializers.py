@@ -11,6 +11,7 @@ class BaseRequestSerializer(serializers.ModelSerializer):
             "name",
             "phone",
             "comment",
+            "addition",
         )
 
     def validate(self, attrs):
