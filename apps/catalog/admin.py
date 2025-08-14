@@ -70,6 +70,7 @@ class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMix
     fields = (
         "name",
         "slug",
+        "image",
         "group",
         "order",
         "description",

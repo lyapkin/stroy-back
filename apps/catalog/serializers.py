@@ -63,6 +63,7 @@ class ProductCategoryItemSerializer(ProductCategorySerializer):
     class Meta(ProductCategorySerializer.Meta):
         fields = ProductCategorySerializer.Meta.fields + (
             "parent",
+            "image",
             "metadata",
         )
 
