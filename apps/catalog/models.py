@@ -77,6 +77,8 @@ class Product(AbstractOrderModel):
     best_price = models.BooleanField("гарантия лучшей цены", default=False)
     description = CKEditor5Field("описание товара", config_name="product")
 
+    hidden = models.BooleanField("скрыть из каталога", default=False)
+
     @property
     def props(self):
         return 1

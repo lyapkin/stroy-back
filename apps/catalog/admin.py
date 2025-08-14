@@ -154,6 +154,7 @@ class ProductRedirectFromInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
     actions = ("generate_metadata",)
     fields = [
+        "hidden",
         "name",
         "slug",
         "categories",
