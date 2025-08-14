@@ -71,9 +71,7 @@ class Attribute(AbstractOrderModel):
 class Product(AbstractOrderModel):
     name = models.CharField("название", max_length=80, unique=True)
     slug = models.SlugField("url (slug)", max_length=96, unique=True)
-    category = models.ForeignKey(
-        ProductCategory, models.PROTECT, related_name="products", verbose_name="категория товара"
-    )
+    categories = models.ManyToManyField(ProductCategory, related_name="products", verbose_name="категории товара")
     remainder = models.PositiveIntegerField("актуальный остаток", null=True, blank=True)
     stock = models.BooleanField("в наличии", default=True)
     best_price = models.BooleanField("гарантия лучшей цены", default=False)

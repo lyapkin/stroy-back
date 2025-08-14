@@ -118,7 +118,7 @@ class ProductAttributeInline(admin.TabularInline):
         fs.form.base_fields["attribute"].widget.can_delete_related = False
 
         if obj:
-            fs.form.base_fields["attribute"].queryset = obj.category.attributes.all()
+            fs.form.base_fields["attribute"].queryset = obj.categories.all()[0].attributes.all()
 
         return fs
 
@@ -156,13 +156,14 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
     fields = [
         "name",
         "slug",
-        "category",
+        "categories",
         "stock",
         "best_price",
         "remainder",
         "description",
         "order",
     ]
+    filter_horizontal = ("categories",)
     prepopulated_fields = {"slug": ["name"]}
     list_display = ["name"]
     inlines = (
@@ -175,7 +176,7 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
     )
     ordering = ["name"]
 
-    def get_readonly_fields(self, request, obj=...):
-        if obj:
-            return ["category"]
-        return super().get_readonly_fields(request, obj)
+    # def get_readonly_fields(self, request, obj=...):
+    #     if obj:
+    #         return ["category"]
+    #     return super().get_readonly_fields(request, obj)

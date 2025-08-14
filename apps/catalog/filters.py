@@ -6,11 +6,11 @@ from .models import Product, ProductPrice
 
 class ProductFilter(filters.FilterSet):
     category = filters.CharFilter(
-        field_name="category__slug",
+        field_name="categories__slug",
         lookup_expr="iexact",
     )
     group = filters.CharFilter(
-        field_name="category__group__slug",
+        field_name="categories__group__slug",
         lookup_expr="iexact",
     )
 

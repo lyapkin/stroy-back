@@ -63,7 +63,7 @@ class ProductCategoryApi(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
 # product
 class ProductApi(viewsets.ReadOnlyModelViewSet):
     queryset_by_action = {
-        "list": Product.objects.select_related("category").prefetch_related(
+        "list": Product.objects.prefetch_related(
             "images",
             Prefetch(
                 "prices",
