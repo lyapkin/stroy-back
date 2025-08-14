@@ -177,6 +177,7 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         ProductRedirectFromInline,
     )
     ordering = ["name"]
+    list_filter = ("hidden",)
 
     # def get_readonly_fields(self, request, obj=...):
     #     if obj:
