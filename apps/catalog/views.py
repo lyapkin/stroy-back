@@ -227,7 +227,7 @@ def ya_feed(request):
         currencyId = SubElement(offer, "currencyId")
         currencyId.text = "RUB"
         categoryId = SubElement(offer, "categoryId")
-        categoryId.text = str(product.product.category.group.id)
+        categoryId.text = str(product.product.categories.all()[0].group.id)
         picture = SubElement(offer, "picture")
         picture.text = settings.SITE_DOMAIN + product.product.first_image.url if product.product.first_image else ""
         description = SubElement(offer, "description")
