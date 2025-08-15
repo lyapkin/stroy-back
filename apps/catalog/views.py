@@ -204,7 +204,8 @@ def ya_feed(request):
 
     offers = SubElement(shop, "offers")
     products = (
-        ProductPrice.objects.prefetch_related("product")
+        ProductPrice.objects.select_related("product")
+        .filter(product__hidden=False)
         .annotate(
             result_price=Case(
                 When(discount=None, then="price"),
@@ -216,6 +217,7 @@ def ya_feed(request):
     for product in products:
         offer = SubElement(offers, "offer", attrib={"id": str(product.id)})
         name = SubElement(offer, "name")
+        print(type(product.product))
         name.text = f"{product.product.name}{" " + product.name if product.name else ""}"
         url = SubElement(offer, "url")
         url.text = f"{settings.SITE_DOMAIN}/product/{product.product.slug}/"
