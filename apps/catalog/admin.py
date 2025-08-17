@@ -5,6 +5,7 @@ from apps.metadata.mixins import MetaGenrationActionMixin
 from .models import (
     ProductCategoryGroup,
     ProductCategory,
+    ProductType,
     ProductImg,
     ProductDoc,
     ProductAttribute,
@@ -46,17 +47,31 @@ class ProductCategoryGroupAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         return form
 
 
-class AtributeValueInine(nested_admin.NestedTabularInline):
+class AttributeValueInline(nested_admin.NestedTabularInline):
     model = AttributeValue
     extra = 0
     verbose_name = "значение"
     verbose_name_plural = "возможные значения"
 
 
+@admin.register(Attribute)
+class AttributeAdmin(nested_admin.NestedModelAdmin):
+    inlines = (AttributeValueInline,)
+
+
 class AttributeInline(nested_admin.NestedTabularInline):
     model = Attribute
-    inlines = (AtributeValueInine,)
+    inlines = (AttributeValueInline,)
     extra = 0
+
+
+@admin.register(ProductType)
+class ProductTypeAdmin(nested_admin.NestedModelAdmin):
+    inlines = (AttributeInline,)
+    filter_horizontal = ("categories",)
+
+    class Media:
+        css = {"all": ("css/catalog/nested_inline.css",)}
 
 
 class ProductCategoryredirectFromInline(nested_admin.NestedInlineModelAdminMixin, admin.TabularInline):
@@ -65,7 +80,7 @@ class ProductCategoryredirectFromInline(nested_admin.NestedInlineModelAdminMixin
 
 
 @admin.register(ProductCategory)
-class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMixin):
+class ProductCatgeoryAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
     actions = ("generate_metadata",)
     fields = (
         "name",
@@ -77,7 +92,6 @@ class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMix
     )
     prepopulated_fields = {"slug": ["name"]}
     inlines = (
-        AttributeInline,
         CategoryMetadataInline,
         ProductCategoryredirectFromInline,
     )
@@ -87,9 +101,6 @@ class ProductCatgeoryAdmin(nested_admin.NestedModelAdmin, MetaGenrationActionMix
         form.base_fields["group"].widget.can_delete_related = False
         form.base_fields["group"].widget.can_change_related = False
         return form
-
-    class Media:
-        css = {"all": ("css/catalog/nested_inline.css",)}
 
 
 class ImgInline(admin.TabularInline):
@@ -117,17 +128,12 @@ class ProductAttributeInline(admin.TabularInline):
         fs.form.base_fields["value"].widget.can_change_related = False
         fs.form.base_fields["value"].widget.can_view_related = False
         fs.form.base_fields["attribute"].widget.can_delete_related = False
-
-        if obj:
-            fs.form.base_fields["attribute"].queryset = obj.categories.all()[0].attributes.all()
+        fs.form.base_fields["attribute"].widget.can_add_related = False
 
         return fs
 
     class Media:
-        js = (
-            "product/js/admin/product_category_attribute_change.js",
-            "product/js/admin/product_category_attribute_value_change.js",
-        )
+        js = ("product/js/admin/product_attribute.js",)
 
 
 class ProductPriceInline(admin.TabularInline):
@@ -158,6 +164,7 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
         "hidden",
         "name",
         "slug",
+        "type",
         "categories",
         "stock",
         "best_price",
@@ -178,8 +185,3 @@ class ProductAdmin(admin.ModelAdmin, MetaGenrationActionMixin):
     )
     ordering = ["name"]
     list_filter = ("hidden",)
-
-    # def get_readonly_fields(self, request, obj=...):
-    #     if obj:
-    #         return ["category"]
-    #     return super().get_readonly_fields(request, obj)

@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 from xml.etree.ElementTree import Element, SubElement, tostring
-from django.db.models import Prefetch, F, Case, When
+from django.db.models import Prefetch, F, Case, When, Q
 from django.shortcuts import get_object_or_404, redirect
 from django.http import Http404, HttpResponse
 from django.conf import settings
@@ -161,22 +161,26 @@ class AttributeApi(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = AttributeSerializer
 
     def get_queryset(self):
-        if self.kwargs.get("category_slug"):
-            return self.queryset.filter(category__slug=self.kwargs.get("category_slug"))
-        return super().get_queryset()
+        types = self.request.query_params.get("types")
+        if types:
+            types = types.split(",")
+            return super().get_queryset().filter(Q(type__in=types) | Q(type__isnull=True))
+        return super().get_queryset().filter(type__isnull=True)
 
 
-# for admin script
-@api_view(["GET"])
-def category_attributes(request, id):
-    attrs = ProductCategory.objects.get(id=id).attributes.all().values_list("id", "name")
-    return Response(attrs)
+class AdminAttributeApi(viewsets.ReadOnlyModelViewSet):
+    queryset = Attribute.objects.all()
+    serializer_class = AttributeSerializer
 
+    def list(self, request, *args, **kwargs):
+        attrs = self.get_queryset().filter(type__isnull=True)
+        serializer = self.get_serializer(attrs, many=True)
+        return Response(serializer.data)
 
-@api_view(["GET"])
-def attribute_values(request, id):
-    attrs = Attribute.objects.get(id=id).values.all().values_list("id", "name")
-    return Response(attrs)
+    def retrieve(self, request, pk, *args, **kwargs):
+        attrs = self.get_queryset().filter(Q(type=pk) | Q(type__isnull=True))
+        serializer = self.get_serializer(attrs, many=True)
+        return Response(serializer.data)
 
 
 # yandex feed

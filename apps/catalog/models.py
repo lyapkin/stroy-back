@@ -47,21 +47,41 @@ class ProductCategory(AbstractOrderModel):
         return self.name
 
 
-class Attribute(AbstractOrderModel):
-    name = models.CharField("название", max_length=24)
-
-    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name="attributes")
+class ProductType(models.Model):
+    name = models.CharField("название", max_length=48, unique=True)
+    categories = models.ManyToManyField(ProductCategory, related_name="types", verbose_name="категории", blank=True)
 
     class Meta:
-        verbose_name = "характеристика категории товаров"
-        verbose_name_plural = "характеристики категорий товаров"
+        verbose_name = "тип товара"
+        verbose_name_plural = "типы товаров"
+
+    def __str__(self):
+        return self.name
+
+
+class Attribute(AbstractOrderModel):
+    name = models.CharField("название", max_length=24)
+    unit = models.CharField("единица измерения", max_length=16, blank=True)
+
+    type = models.ForeignKey(
+        ProductType,
+        on_delete=models.CASCADE,
+        related_name="attributes",
+        null=True,
+        blank=True,
+        verbose_name="тип товара",
+    )
+
+    class Meta:
+        verbose_name = "характеристика товаров"
+        verbose_name_plural = "характеристики товаров"
         constraints = [
             models.UniqueConstraint(
                 fields=(
                     "name",
-                    "category",
+                    "type",
                 ),
-                name="unique_attribute_name_category",
+                name="unique_attribute_type",
             ),
         ]
 
@@ -77,6 +97,10 @@ class Product(AbstractOrderModel):
     stock = models.BooleanField("в наличии", default=True)
     best_price = models.BooleanField("гарантия лучшей цены", default=False)
     description = CKEditor5Field("описание товара", config_name="product")
+
+    type = models.ForeignKey(
+        ProductType, models.PROTECT, related_name="products", null=True, blank=True, verbose_name="тип товара"
+    )
 
     hidden = models.BooleanField("скрытый из каталога", default=False)
 

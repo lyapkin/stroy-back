@@ -26,6 +26,7 @@ class ProductCategorySerializer(serializers.ModelSerializer):
             "name",
             "slug",
             "description",
+            "types",
         )
 
 
@@ -92,6 +93,7 @@ class ProductDocSerializer(serializers.ModelSerializer):
 
 class ProductAttributeSerializer(serializers.ModelSerializer):
     attribute = serializers.CharField(source="attribute.name")
+    unit = serializers.CharField(source="attribute.unit")
     value = serializers.CharField(source="value.name")
 
     class Meta:
@@ -99,6 +101,7 @@ class ProductAttributeSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "attribute",
+            "unit",
             "value",
         )
 
@@ -225,4 +228,6 @@ class AttributeSerializer(serializers.ModelSerializer):
             "name",
             "slug",
             "values",
+            "type",
+            "unit",
         )
