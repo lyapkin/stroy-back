@@ -57,6 +57,7 @@ class AttributeValueInline(nested_admin.NestedTabularInline):
 @admin.register(Attribute)
 class AttributeAdmin(nested_admin.NestedModelAdmin):
     inlines = (AttributeValueInline,)
+    list_display = ["name", "type"]
 
 
 class AttributeInline(nested_admin.NestedTabularInline):
